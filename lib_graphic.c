@@ -46,7 +46,7 @@ sfText *create_text(sfText *text, int size, char *str)
 
     text = sfText_create();
     sfText_setString(text, str);
-    sfText_setFont(text, sfFont_createFromFile("files/font.ttf"));
+    sfText_setFont(text, sfFont_createFromFile("files/font.fnt"));
     sfText_setCharacterSize(text, size);
     return (text);
 }

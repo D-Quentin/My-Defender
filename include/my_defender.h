@@ -25,10 +25,39 @@
 
 typedef struct texture_s texture_t;
 struct texture_s {
+    sfSprite *title;
+    sfSprite *play;
+    sfSprite *bal_lvl1;
+    sfSprite *bal_lvl2;
+    sfSprite *bal_lvl3;
+    sfSprite *bal_lvl4;
+    sfSprite *bal_lvl5;
+    sfSprite *bal_lvl6;
+    sfSprite *case1;
+    sfSprite *case2;
+    sfSprite *case3;
+    sfSprite *case4;
+    sfSprite *case5;
+    sfSprite *map1;
+    sfSprite *map2;
+    sfSprite *p1_lvl0;
+    sfSprite *p1_lvl1;
+    sfSprite *p1_lvl2;
+    sfSprite *p2_lvl0;
+    sfSprite *p2_lvl1;
+    sfSprite *p2_lvl2;
+    sfSprite *p3_lvl0;
+    sfSprite *p3_lvl1;
+    sfSprite *p3_lvl2;
+    sfSprite *p4_lvl0;
+    sfSprite *p4_lvl1;    
 };
 
 typedef struct counter_s counter_t;
 struct counter_s {
+    int title;
+    int setting;
+    int scoreboard;
 };
 
 typedef struct rect_s rect_t;
@@ -37,6 +66,7 @@ struct rect_s {
 
 typedef struct text_s text_t;
 struct text_s {
+    sfText *coucou;
 };
 
 typedef struct clocks_s clocks_t;
@@ -69,6 +99,7 @@ sfRenderWindow *set_win(char *title, int fps, int fullscreen);
 all_t init(all_t all);
 void init_pos(all_t all);
 all_t init_tex(all_t all);
+all_t init_tex2(all_t all);
 all_t init_counter(all_t all);
 all_t init_text(all_t all);
 all_t init_rect(all_t all);
@@ -85,3 +116,6 @@ all_t set_fps(all_t all);
 all_t set_window(all_t all);
 char *read_high_score(all_t all);
 char *write_high_score(char *buffer, all_t all);
+all_t setting(all_t all);
+all_t title(all_t all);
+void display_title(all_t all);

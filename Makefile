@@ -8,12 +8,15 @@
 SRC     =       my_defender.c		\
 		lib_graphic.c		\
 		lib_graphic2.c		\
+		init.c			\
+		title.c			\
+		display.c		\
 
 CPPFLAGS =	-I ./include
 
 OBJ     =       $(SRC:.c=.o)
 
-NAME    =       my_runner
+NAME    =       my_defender
 
 all:		$(NAME)
 

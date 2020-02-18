@@ -20,17 +20,3 @@ sfRenderWindow *set_win(char *title, int fps, int fullscreen)
     sfRenderWindow_setKeyRepeatEnabled(window, sfFalse);
     return (window);
 }
-
-char *write_high_score(char *buffer, all_t all)
-{
-    write(open(all.hs_file, O_WRONLY | O_TRUNC), buffer, 10);
-    return (buffer);
-}
-
-char *read_high_score(all_t all)
-{
-    char *buffer = malloc(sizeof(char) * 10);
-
-    read(open(all.hs_file, O_RDONLY), buffer, 10);
-    return (buffer);
-}
