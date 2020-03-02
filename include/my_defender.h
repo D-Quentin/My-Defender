@@ -76,6 +76,7 @@ struct counter_s {
     int sound;
     int fps;
     int window;
+    int map;
 };
 
 typedef struct rect_s rect_t;
@@ -173,3 +174,6 @@ all_t first_path(all_t all);
 void display_map1(all_t all);
 void display_map2(all_t all);
 all_t second_path(all_t all);
+all_t choose_map(all_t all);
+void display_choose_map(all_t all);
+all_t play(all_t all);

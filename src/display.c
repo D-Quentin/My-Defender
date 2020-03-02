@@ -7,6 +7,15 @@
 
 #include "my.h"
 
+void display_choose_map(all_t all)
+{
+    sfRenderWindow_clear(all.window, sfBlack);
+    sfRenderWindow_drawSprite(all.window, all.tex.back, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.map1, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.map2, NULL);
+    sfRenderWindow_display(all.window);
+}
+
 void display_map1(all_t all)
 {
     sfRenderWindow_clear(all.window, sfBlack);

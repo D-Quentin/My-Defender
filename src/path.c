@@ -17,7 +17,7 @@ all_t first_path(all_t all)
             all.pos.ballon.y > 200)
             sfSprite_move(all.tex.bal_lvl1, all.pos.up);
         else if (all.pos.ballon.x >= 690 && all.pos.ballon.y < 416 &&
-                 all.pos.ballon.x < 1400|| all.pos.ballon.x >= 925 &&
+                 all.pos.ballon.x < 1400 || all.pos.ballon.x >= 925 &&
                  all.pos.ballon.y < 636 && all.pos.ballon.x < 1400 ||
                  all.pos.ballon.x >= 1205 && all.pos.ballon.y < 876 &&
                  all.pos.ballon.x < 1400)

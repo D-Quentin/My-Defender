@@ -14,6 +14,7 @@ SRC		=	src/my_defender.c		\
 			src/event.c			\
 			src/slider.c			\
 			src/path.c			\
+			src/play.c			\
 
 CPPFLAGS	=	-I ./include
 
@@ -27,7 +28,7 @@ NAME		=	my_defender
 
 all:		$(NAME)
 
-$(NAME):        $(OBJ)
+$(NAME):	$(OBJ)
 		make -C ./lib/my
 		gcc -o $(NAME) $(OBJ) $(CPPFLAGS) $(LDFLAGS) $(GRAPHICAL)
 

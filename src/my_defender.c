@@ -19,6 +19,8 @@ int main(int ac, char **av)
             all = title(all);
         if (all.cn.setting == 1)
             all = setting(all);
+        if (all.cn.play == 1)
+            all = play(all);
     }
     return (0);
 }
