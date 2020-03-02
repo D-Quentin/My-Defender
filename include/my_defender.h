@@ -33,7 +33,6 @@ struct texture_s {
     sfSprite *bal_lvl3;
     sfSprite *bal_lvl4;
     sfSprite *bal_lvl5;
-    sfSprite *bal_lvl6;
     sfSprite **case1;
     sfSprite **case2;
     sfSprite **case3;
@@ -41,6 +40,10 @@ struct texture_s {
     sfSprite **case5;
     sfSprite *map1;
     sfSprite *map2;
+    sfSprite *fullmap1;
+    sfSprite *fullmap2;
+    sfSprite *fullmap1bis;
+    sfSprite *fullmap2bis;
     sfSprite *p1_lvl0;
     sfSprite *p1_lvl1;
     sfSprite *p1_lvl2;
@@ -60,6 +63,7 @@ struct texture_s {
     sfSprite **slid2;
     sfSprite **hud;
     sfSprite *arrow;
+    sfSprite *fond3;
 };
 
 typedef struct counter_s counter_t;
@@ -92,6 +96,7 @@ struct text_s {
 
 typedef struct clocks_s clocks_t;
 struct clocks_s {
+    sfClock *map;
 };
 
 typedef struct music_s music_t;
@@ -100,6 +105,20 @@ struct music_s {
 
 typedef struct str_s str_t;
 struct str_s {
+};
+
+typedef struct pos_s pos_t;
+struct pos_s {
+    sfVector2f b;
+    sfVector2f ballon;
+    sfVector2f right;
+    sfVector2f down;
+    sfVector2f up;
+    sfVector2f pb;
+    sfVector2f up_right;
+    sfVector2f down_right;
+    sfVector2f down_left;
+    sfVector2f up_left;
 };
 
 typedef struct all_s all_t;
@@ -113,6 +132,7 @@ struct all_s {
     text_t tx;
     rect_t re;
     music_t mu;
+    pos_t pos;
 };
 
 sfSprite *create_sprite(sfSprite *sprite, char *file);
@@ -126,6 +146,7 @@ all_t init_text(all_t all);
 all_t init_rect(all_t all);
 all_t init_clock(all_t all);
 all_t init_music(all_t all);
+all_t init_posi(all_t all);
 void set_pos(sfSprite *sprite, int x, int y);
 all_t analyse_event(all_t all);
 all_t close_window(all_t all);
@@ -148,3 +169,7 @@ all_t gest_slider(all_t all, sfSprite *sprite, int x, int nb);
 void init_pos_text(all_t all);
 all_t volume_music(all_t all, int nb);
 all_t set_textfps(all_t all, int nb);
+all_t first_path(all_t all);
+void display_map1(all_t all);
+void display_map2(all_t all);
+all_t second_path(all_t all);

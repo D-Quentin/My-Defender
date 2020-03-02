@@ -10,7 +10,7 @@
 int main(int ac, char **av)
 {
     all_t all;
-
+    
     if (ac != 1)
         return (84);
     all = init(all);

@@ -18,6 +18,7 @@ all_t init(all_t all)
     all = init_text(all);
     all = init_rect(all);
     all = init_music(all);
+    all = init_posi(all);
     init_pos(all);
     init_pos_text(all);
     return (all);
@@ -58,7 +59,6 @@ all_t init_tex(all_t all)
     all.tex.bal_lvl3 = create_sprite(all.tex.bal_lvl3, "files/bal_lvl3.png");
     all.tex.bal_lvl4 = create_sprite(all.tex.bal_lvl4, "files/bal_lvl4.png");
     all.tex.bal_lvl5 = create_sprite(all.tex.bal_lvl5, "files/bal_lvl5.png");
-    all.tex.bal_lvl6 = create_sprite(all.tex.bal_lvl6, "files/bal_lvl6.png");
     all.tex.map1 = create_sprite(all.tex.map1, "files/map1.png");
     all.tex.map2 = create_sprite(all.tex.map2, "files/map2.png");
     all.tex.setting = create_sprite(all.tex.setting, "files/setting.png");
@@ -91,6 +91,10 @@ all_t init_tex2(all_t all)
     all.tex.p3_lvl2 = create_sprite(all.tex.p3_lvl2, "files/p3_lvl2.png");
     all.tex.p4_lvl0 = create_sprite(all.tex.p4_lvl0, "files/p4_lvl0.png");
     all.tex.p1_lvl1 = create_sprite(all.tex.p1_lvl1, "files/p1_lvl1.png");
+    all.tex.fullmap1 = create_sprite(all.tex.fullmap1, "files/fullmap1.png");
+    all.tex.fullmap1bis = create_sprite(all.tex.fullmap1bis, "files/map1bis.png");
+    all.tex.fullmap2 = create_sprite(all.tex.fullmap2, "files/fullmap1.png");
+    all.tex.fullmap2bis = create_sprite(all.tex.fullmap2bis, "files/map1bis.png");
     return (all);
 }
 
@@ -123,10 +127,33 @@ all_t init_rect(all_t all)
 
 all_t init_clock(all_t all)
 {
+    all.cl.map = sfClock_create();
+    return (all);
 }
 
 all_t init_music(all_t all)
 {
+}
+
+all_t init_posi(all_t all)
+{
+    all.pos.b.x = 340;
+    all.pos.b.y = 480;
+    all.pos.ballon.x = 370;
+    all.pos.ballon.y = 870;
+    all.pos.up.y = -1;
+    all.pos.right.x = 1;
+    all.pos.down.y = 1;
+    all.pos.up_right.x = 1;
+    all.pos.up_right.y = -1;
+    all.pos.up_left.x = -1;
+    all.pos.up_left.y = -1;
+    all.pos.down_right.x = 1;
+    all.pos.down_right.y = 1;
+    all.pos.down_left.x = -1;
+    all.pos.down_left.y = 1;
+    //sfSprite_setPosition(all.tex.bal_lvl1, all.pos.ballon);
+    return (all);
 }
 
 void init_pos_text(all_t all)

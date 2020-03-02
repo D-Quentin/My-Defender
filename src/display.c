@@ -7,6 +7,24 @@
 
 #include "my.h"
 
+void display_map1(all_t all)
+{
+    sfRenderWindow_clear(all.window, sfBlack);
+    sfRenderWindow_drawSprite(all.window, all.tex.fullmap1bis, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.bal_lvl1, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.fullmap1, NULL);
+    sfRenderWindow_display(all.window);
+}
+
+void display_map2(all_t all)
+{
+    sfRenderWindow_clear(all.window, sfBlack);
+    sfRenderWindow_drawSprite(all.window, all.tex.fullmap2bis, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.bal_lvl1, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.fullmap2, NULL);
+    sfRenderWindow_display(all.window);
+}
+
 void display_title(all_t all)
 {
     sfRenderWindow_clear(all.window, sfBlack);

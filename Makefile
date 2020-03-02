@@ -13,6 +13,7 @@ SRC		=	src/my_defender.c		\
 			src/display.c			\
 			src/event.c			\
 			src/slider.c			\
+			src/path.c			\
 
 CPPFLAGS	=	-I ./include
 
