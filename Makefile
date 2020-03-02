@@ -5,24 +5,30 @@
 ## my_hunter
 ##
 
-SRC     =       my_defender.c		\
-		lib_graphic.c		\
-		lib_graphic2.c		\
-		init.c			\
-		title.c			\
-		display.c		\
+SRC		=	src/my_defender.c		\
+			src/lib_graphic.c		\
+			src/lib_graphic2.c		\
+			src/init.c			\
+			src/title.c			\
+			src/display.c			\
+			src/event.c			\
+			src/slider.c			\
 
-CPPFLAGS =	-I ./include
+CPPFLAGS	=	-I ./include
 
-OBJ     =       $(SRC:.c=.o)
+LDFLAGS		=	-L ./lib -lmy
 
-NAME    =       my_defender
+GRAPHICAL	=	-l csfml-graphics -l csfml-system -l csfml-audio -l csfml-window
+
+OBJ		=	$(SRC:.c=.o)
+
+NAME		=	my_defender
 
 all:		$(NAME)
 
 $(NAME):        $(OBJ)
 		make -C ./lib/my
-		gcc -l csfml-graphics -l csfml-system -l csfml-audio -l csfml-window -lm -o $(NAME) $(OBJ) $(CPPFLAGS) -L ./lib -lmy
+		gcc -o $(NAME) $(OBJ) $(CPPFLAGS) $(LDFLAGS) $(GRAPHICAL)
 
 clean:
 		rm -f $(OBJ)
@@ -32,3 +38,5 @@ fclean:		clean
 		rm -f $(NAME)
 
 re:		fclean all
+
+.PHONY:		all clean fclean re

@@ -26,6 +26,7 @@
 typedef struct texture_s texture_t;
 struct texture_s {
     sfSprite *title;
+    sfSprite *back;
     sfSprite *play;
     sfSprite *bal_lvl1;
     sfSprite *bal_lvl2;
@@ -33,11 +34,11 @@ struct texture_s {
     sfSprite *bal_lvl4;
     sfSprite *bal_lvl5;
     sfSprite *bal_lvl6;
-    sfSprite *case1;
-    sfSprite *case2;
-    sfSprite *case3;
-    sfSprite *case4;
-    sfSprite *case5;
+    sfSprite **case1;
+    sfSprite **case2;
+    sfSprite **case3;
+    sfSprite **case4;
+    sfSprite **case5;
     sfSprite *map1;
     sfSprite *map2;
     sfSprite *p1_lvl0;
@@ -50,7 +51,15 @@ struct texture_s {
     sfSprite *p3_lvl1;
     sfSprite *p3_lvl2;
     sfSprite *p4_lvl0;
-    sfSprite *p4_lvl1;    
+    sfSprite *p4_lvl1;
+    sfSprite *setting;
+    sfSprite *lboard;
+    sfSprite *exit;
+    sfSprite *home;
+    sfSprite **slid;
+    sfSprite **slid2;
+    sfSprite **hud;
+    sfSprite *arrow;
 };
 
 typedef struct counter_s counter_t;
@@ -58,6 +67,11 @@ struct counter_s {
     int title;
     int setting;
     int scoreboard;
+    int play;
+    int music;
+    int sound;
+    int fps;
+    int window;
 };
 
 typedef struct rect_s rect_t;
@@ -66,7 +80,14 @@ struct rect_s {
 
 typedef struct text_s text_t;
 struct text_s {
-    sfText *coucou;
+    sfText *nb_music;
+    sfText *nb_sound;
+    sfText *nb_fps;
+    sfText *music;
+    sfText *sound;
+    sfText *fps;
+    sfText *windowed;
+    sfText *fullscreen;
 };
 
 typedef struct clocks_s clocks_t;
@@ -119,3 +140,11 @@ char *write_high_score(char *buffer, all_t all);
 all_t setting(all_t all);
 all_t title(all_t all);
 void display_title(all_t all);
+all_t analyse_event(all_t all);
+all_t close_window(all_t all);
+all_t init_malloc(all_t all);
+void display_setting(all_t all);
+all_t gest_slider(all_t all, sfSprite *sprite, int x, int nb);
+void init_pos_text(all_t all);
+all_t volume_music(all_t all, int nb);
+all_t set_textfps(all_t all, int nb);

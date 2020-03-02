@@ -20,4 +20,5 @@ int main(int ac, char **av)
         if (all.cn.setting == 1)
             all = setting(all);
     }
+    return (0);
 }
