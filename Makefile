@@ -15,6 +15,7 @@ SRC		=	src/my_defender.c		\
 			src/slider.c			\
 			src/path.c			\
 			src/play.c			\
+			src/waves.c			\
 
 CPPFLAGS	=	-I ./include
 
