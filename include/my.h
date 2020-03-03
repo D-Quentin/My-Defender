@@ -8,6 +8,9 @@
 #include "my_defender.h"
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 int error(char const *str);
 char *my_strdup(char const *src);

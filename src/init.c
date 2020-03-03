@@ -98,6 +98,10 @@ all_t init_tex2(all_t all)
     all.tex.p3_lvl2 = create_sprite(all.tex.p3_lvl2, "files/p3_lvl2.png");
     all.tex.p4_lvl0 = create_sprite(all.tex.p4_lvl0, "files/p4_lvl0.png");
     all.tex.p1_lvl1 = create_sprite(all.tex.p1_lvl1, "files/p1_lvl1.png");
+    all.tex.p1 = create_sprite(all.tex.p1, "files/p1.png");
+    all.tex.p2 = create_sprite(all.tex.p2, "files/p2.png");
+    all.tex.p3 = create_sprite(all.tex.p3, "files/p3.png");
+    all.tex.p4 = create_sprite(all.tex.p4, "files/p4.png");
     all.tex.fullmap1 = create_sprite(all.tex.fullmap1, "files/fullmap1.png");
     all.tex.fullmap1bis = create_sprite(all.tex.fullmap1bis, "files/map1bis.png");
     all.tex.fullmap2 = create_sprite(all.tex.fullmap2, "files/fullmap2.png");

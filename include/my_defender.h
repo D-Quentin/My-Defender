@@ -65,6 +65,10 @@ struct texture_s {
     sfSprite *arrow;
     sfSprite *fond3;
     sfSprite **hud2;
+    sfSprite *p1;
+    sfSprite *p2;
+    sfSprite *p3;
+    sfSprite *p4;
 };
 
 typedef struct counter_s counter_t;
