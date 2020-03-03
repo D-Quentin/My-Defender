@@ -118,6 +118,7 @@ all_t init_counter(all_t all)
     all.cn.fps = 144;
     all.cn.map = 0;
     all.cn.play = 0;
+    all.cn.place_bl = 0;
     return (all);
 }
 

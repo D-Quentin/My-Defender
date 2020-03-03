@@ -69,6 +69,7 @@ struct texture_s {
     sfSprite *p2;
     sfSprite *p3;
     sfSprite *p4;
+    sfSprite **tab_sprite;
 };
 
 typedef struct counter_s counter_t;
@@ -82,6 +83,8 @@ struct counter_s {
     int fps;
     int window;
     int map;
+    int place_bl;
+    int line;
 };
 
 typedef struct rect_s rect_t;
@@ -112,6 +115,7 @@ struct music_s {
 
 typedef struct str_s str_t;
 struct str_s {
+    char **tab_waves;   
 };
 
 typedef struct pos_s pos_t;
@@ -185,5 +189,5 @@ void display_choose_map(all_t all);
 all_t play(all_t all);
 all_t second_path_end(all_t all);
 void display_play(all_t all);
-//char *read_fonction(char *file);
-int init_waves(void);
+all_t init_waves(all_t all);
+    

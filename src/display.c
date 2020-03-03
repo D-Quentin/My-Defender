@@ -9,7 +9,8 @@
 
 void display_play(all_t all)
 {
-    sfRenderWindow_clear(all.window, sfBlack);
+//    sfRenderWindow_clear(all.window, sfBlack);
+    /*
     if (all.cn.map == 1) {
         sfRenderWindow_drawSprite(all.window, all.tex.fullmap1bis, NULL);
         sfRenderWindow_drawSprite(all.window, all.tex.fullmap1, NULL);
@@ -18,7 +19,8 @@ void display_play(all_t all)
         sfRenderWindow_drawSprite(all.window, all.tex.fullmap2, NULL);
     }
     sfRenderWindow_drawSprite(all.window, all.tex.bal_lvl1, NULL);
-    sfRenderWindow_display(all.window);
+    */
+    //  sfRenderWindow_display(all.window);
 }
 
 void display_choose_map(all_t all)

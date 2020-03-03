@@ -11,7 +11,8 @@ all_t play(all_t all)
 {
     while (all.cn.play == 1) {
         if (all.cn.map == 1)
-            first_path(all);
+            all = init_waves(all);
+            //first_path(all);
         else
             second_path(all);
         display_play(all);

@@ -14,7 +14,6 @@ int main(int ac, char **av)
     if (ac != 1)
         return (84);
     all = init(all);
-    init_waves();
     while (sfRenderWindow_isOpen(all.window)) {
         if (all.cn.title == 1)
             all = title(all);
