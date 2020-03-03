@@ -14,6 +14,7 @@ all_t play(all_t all)
             first_path(all);
         else
             second_path(all);
+        display_play(all);
     }
     return (all);
 }

@@ -7,30 +7,29 @@
 
 #include "my.h"
 
+void display_play(all_t all)
+{
+    sfRenderWindow_clear(all.window, sfBlack);
+    if (all.cn.map == 1) {
+        sfRenderWindow_drawSprite(all.window, all.tex.fullmap1bis, NULL);
+        sfRenderWindow_drawSprite(all.window, all.tex.fullmap1, NULL);
+    } else {
+        sfRenderWindow_drawSprite(all.window, all.tex.fullmap2bis, NULL);
+        sfRenderWindow_drawSprite(all.window, all.tex.fullmap2, NULL);
+    }
+    sfRenderWindow_drawSprite(all.window, all.tex.bal_lvl1, NULL);
+    sfRenderWindow_display(all.window);
+}
+
 void display_choose_map(all_t all)
 {
     sfRenderWindow_clear(all.window, sfBlack);
     sfRenderWindow_drawSprite(all.window, all.tex.back, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.hud2[0], NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.hud2[1], NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.map1, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.map2, NULL);
-    sfRenderWindow_display(all.window);
-}
-
-void display_map1(all_t all)
-{
-    sfRenderWindow_clear(all.window, sfBlack);
-    sfRenderWindow_drawSprite(all.window, all.tex.fullmap1bis, NULL);
-    sfRenderWindow_drawSprite(all.window, all.tex.bal_lvl1, NULL);
-    sfRenderWindow_drawSprite(all.window, all.tex.fullmap1, NULL);
-    sfRenderWindow_display(all.window);
-}
-
-void display_map2(all_t all)
-{
-    sfRenderWindow_clear(all.window, sfBlack);
-    sfRenderWindow_drawSprite(all.window, all.tex.fullmap2bis, NULL);
-    sfRenderWindow_drawSprite(all.window, all.tex.bal_lvl1, NULL);
-    sfRenderWindow_drawSprite(all.window, all.tex.fullmap2, NULL);
+    sfRenderWindow_drawText(all.window, all.tx.choose, NULL);
     sfRenderWindow_display(all.window);
 }
 

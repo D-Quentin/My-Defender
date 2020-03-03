@@ -64,6 +64,7 @@ struct texture_s {
     sfSprite **hud;
     sfSprite *arrow;
     sfSprite *fond3;
+    sfSprite **hud2;
 };
 
 typedef struct counter_s counter_t;
@@ -93,6 +94,7 @@ struct text_s {
     sfText *fps;
     sfText *windowed;
     sfText *fullscreen;
+    sfText *choose;
 };
 
 typedef struct clocks_s clocks_t;
@@ -178,3 +180,4 @@ all_t choose_map(all_t all);
 void display_choose_map(all_t all);
 all_t play(all_t all);
 all_t second_path_end(all_t all);
+void display_play(all_t all);

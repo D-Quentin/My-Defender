@@ -29,6 +29,7 @@ all_t init_malloc(all_t all)
     all.tex.slid = malloc(sizeof(sfSprite *) * 3);
     all.tex.slid2 = malloc(sizeof(sfSprite *) * 3);
     all.tex.hud = malloc(sizeof(sfSprite *) * 2);
+    all.tex.hud2 = malloc(sizeof(sfSprite *) * 2);
     return (all);
 }
 
@@ -48,8 +49,10 @@ void init_pos(all_t all)
     set_pos(all.tex.hud[0], 200, 300);
     set_pos(all.tex.hud[1], 200, 500);
     set_pos(all.tex.arrow, 50, 522);
-    set_pos(all.tex.map1, 325, 375);
+    set_pos(all.tex.map1, 320, 375);
     set_pos(all.tex.map2, 1125, 375);
+    set_pos(all.tex.hud2[0], 285, 340);
+    set_pos(all.tex.hud2[1], 1090, 340);
 }
 
 all_t init_tex(all_t all)
@@ -76,6 +79,8 @@ all_t init_tex(all_t all)
     all.tex.slid2[2] = create_sprite(all.tex.slid2[2], "files/slid2.png");
     all.tex.hud[0] = create_sprite(all.tex.hud[0], "files/hud.png");
     all.tex.hud[1] = create_sprite(all.tex.hud[1], "files/hud.png");
+    all.tex.hud2[0] = create_sprite(all.tex.hud2[0], "files/hud2.png");
+    all.tex.hud2[1] = create_sprite(all.tex.hud2[1], "files/hud2.png");
     all.tex.arrow = create_sprite(all.tex.arrow, "files/arrow.png");
     return (all);
 }
@@ -121,7 +126,8 @@ all_t init_text(all_t all)
     all.tx.sound = create_text(all.tx.sound, 80, "SOUND EFFECT");
     all.tx.fps = create_text(all.tx.fps, 80, "FPS");
     all.tx.windowed = create_text(all.tx.windowed, 80, "WINDOWED");
-    all.tx.fullscreen = create_text(all.tx.fullscreen, 80, "FULLSCREEN");   
+    all.tx.fullscreen = create_text(all.tx.fullscreen, 80, "FULLSCREEN");
+    all.tx.choose = create_text(all.tx.choose, 120, "CHOOSE YOUR MAP");
     return (all);
 }
 
@@ -167,4 +173,5 @@ void init_pos_text(all_t all)
     set_pos_text(all.tx.fps, 400, 700);
     set_pos_text(all.tx.windowed, 270, 320);
     set_pos_text(all.tx.fullscreen, 230, 520);
+    set_pos_text(all.tx.choose, 500, 140);
 }

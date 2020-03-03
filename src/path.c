@@ -9,7 +9,6 @@
 
 all_t first_path(all_t all)
 {
-    display_map1(all);
     if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.map)) > 1) {
         all.pos.ballon = sfSprite_getPosition(all.tex.bal_lvl1);
         if (all.pos.ballon.x > 455 && all.pos.ballon.y > 200 &&
@@ -42,7 +41,6 @@ all_t second_path_end(all_t all)
 }
 all_t second_path(all_t all)
 {
-    display_map2(all);
     if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.map)) > 1) {
         all.pos.b = sfSprite_getPosition(all.tex.bal_lvl1);
         if (all.pos.b.x < 742 && all.pos.b.x > 0 ||
