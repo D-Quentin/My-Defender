@@ -177,3 +177,4 @@ all_t second_path(all_t all);
 all_t choose_map(all_t all);
 void display_choose_map(all_t all);
 all_t play(all_t all);
+all_t second_path_end(all_t all);
