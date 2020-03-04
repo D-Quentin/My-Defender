@@ -126,6 +126,7 @@ struct music_s {
 typedef struct str_s str_t;
 struct str_s {
     char **tab_waves;
+    char *line;
 };
 
 typedef struct pos_s pos_t;

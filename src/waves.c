@@ -97,29 +97,30 @@ all_t create_sprite_tab(all_t all)
 {
     static int i = 0;
     static float *spd;
+
     if (i == 0) {
         spd = malloc(sizeof(int) *1000);
+        all.cn.line = compt_bal(all.str.line);
         all.tex.tab_sprite = malloc(sizeof(sfSprite *) * 10000);
-        all.cn.line = compt_bal(all.str.tab_waves[0]);
     }
     while (i != all.cn.line) {
-        if (all.str.tab_waves[0][i] == '1') {
+        if (all.str.line[i] == '1') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl1.png");
             spd[i] = 1;
         }
-        if (all.str.tab_waves[0][i] == '2') {
+        if (all.str.line[i] == '2') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl2.png");
             spd[i] = 1.3;
         }
-        if (all.str.tab_waves[0][i] == '3') {
+        if (all.str.line[i] == '3') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl3.png");
             spd[i] = 1.5;
         }
-        if (all.str.tab_waves[0][i] == '4') {
+        if (all.str.line[i] == '4') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl4.png");
             spd[i] = 2;
         }
-        if (all.str.tab_waves[0][i] == '5') {
+        if (all.str.line[i] == '5') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl5.png");
             spd[i] = 1.6;
         }
@@ -130,10 +131,26 @@ all_t create_sprite_tab(all_t all)
     return all;
 }
 
+char *split_line(char *str)
+{
+    int i = 0;
+    int c = 0;
+    char *new_line;
+
+    while (str[i] != '\n' && str[i] != '\0')
+        i++;
+    new_line = malloc(sizeof(char *) * i);
+    while (c != i) {
+        new_line[c] = str[c];
+        c++;
+    }
+    return new_line;
+}
+
 all_t init_waves(all_t all)
 {
     char *waves = read_fonction("src/create_waves.txt");
-    all.str.tab_waves = str_to_chartab(waves);
+    all.str.line = split_line(waves);
     all = create_sprite_tab(all);
     return (all);
 }
