@@ -62,6 +62,7 @@ all_t first_path12(all_t all, float *spd)
                 all.pos.right.x = spd[i];
                 sfSprite_move(all.tex.tab_sprite[i], all.pos.right);
             }
+            all = gest_life(all, spd[i]);
             i++;
         }
         i = 0;
@@ -87,19 +88,19 @@ all_t create_sprite_tab(all_t all)
         }
         if (all.str.line[i] == '2') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl2.png");
-            spd[i] = 1.3;
+            spd[i] = 1;
         }
         if (all.str.line[i] == '3') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl3.png");
-            spd[i] = 1.5;
+            spd[i] = 1;
         }
         if (all.str.line[i] == '4') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl4.png");
-            spd[i] = 2;
+            spd[i] = 3;
         }
         if (all.str.line[i] == '5') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl5.png");
-            spd[i] = 1.6;
+            spd[i] = 2;
         }
         set_pos(all.tex.tab_sprite[i], 350, 870);            
         i++;
@@ -116,6 +117,7 @@ char *split_line(char *str)
 
     while (str[i] != '\n' && str[i] != '\0')
         i++;
+    i++;
     new_line = malloc(sizeof(char *) * i);
     while (c != i) {
         new_line[c] = str[c];

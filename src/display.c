@@ -7,6 +7,14 @@
 
 #include "my.h"
 
+void display_life(all_t all)
+{
+    char *life;
+
+    life = my_itoa(all.cn.life);
+    sfText_setString(all.tx.life, life);
+    sfRenderWindow_drawText(all.window, all.tx.life, NULL);
+}
 void display_play(all_t all)
 {
     sfRenderWindow_clear(all.window, sfBlack);
@@ -19,6 +27,7 @@ void display_play(all_t all)
         display_bl(all);
         sfRenderWindow_drawSprite(all.window, all.tex.fullmap2, NULL);
     }
+    display_life(all);
     sfRenderWindow_drawSprite(all.window, all.tex.p1, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p2, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p3, NULL);

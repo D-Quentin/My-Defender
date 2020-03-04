@@ -143,6 +143,7 @@ all_t init_counter(all_t all)
     all.cn.nb_t3 = 1;
     all.cn.nb_t4 = 1;
     all.cn.nb_t = 0;
+    all.cn.life = 150;
     return (all);
 }
 
@@ -157,6 +158,7 @@ all_t init_text(all_t all)
     all.tx.windowed = create_text(all.tx.windowed, 80, "WINDOWED");
     all.tx.fullscreen = create_text(all.tx.fullscreen, 80, "FULLSCREEN");
     all.tx.choose = create_text(all.tx.choose, 120, "CHOOSE YOUR MAP");
+    all.tx.life = create_text(all.tx.life, 85, "150");
     return (all);
 }
 
@@ -204,4 +206,5 @@ void init_pos_text(all_t all)
     set_pos_text(all.tx.windowed, 270, 320);
     set_pos_text(all.tx.fullscreen, 230, 520);
     set_pos_text(all.tx.choose, 500, 140);
+    set_pos_text(all.tx.life, 1710, 5);
 }

@@ -94,6 +94,7 @@ struct counter_s {
     int nb_t4;
     int place_bl;
     int line;
+    int life;
 };
 
 typedef struct rect_s rect_t;
@@ -111,6 +112,8 @@ struct text_s {
     sfText *windowed;
     sfText *fullscreen;
     sfText *choose;
+    sfText *life;
+    sfFont *font;
 };
 
 typedef struct clocks_s clocks_t;
@@ -216,3 +219,5 @@ all_t set_tower4(all_t all, sfVector2i mouse);
 void display_tower(all_t all);
 all_t set_pos_drag(all_t all, sfVector2i mouse);
 void display_bl(all_t all);
+all_t gest_life(all_t all, int spd);
+void display_life(all_t all);
