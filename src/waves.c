@@ -15,29 +15,6 @@ char *read_fonction(char *file)
     return (buffer);
 }
 
-char **str_to_chartab(char *str)
-{
-    int i = 0;
-    int j = 0;
-    int k = 0;
-    char **map = malloc(sizeof(char *) * 1000);
-
-    while (str[i] != '\0') {
-        map[j] = malloc(sizeof(char) * 100000);
-        while (str[i] != '\n') {
-            map[j][k] = str[i];
-            i++;
-            k++;
-        }
-        map[j][k] = str[i];
-        map[j][k + 1] = '\0';
-        k = 0;
-        i++;
-        j++;
-    }
-    return map;
-}
-
 int compt_bal(char *str)
 {
     int i = 0;

@@ -18,6 +18,7 @@ char *my_strcat(char *str1, char *str2)
             cat[i] = str1[j];
         for (int k = 0; k < size2; k++, i++)
             cat[i] = str2[k];
+        cat[i] = '\0';
     }
     return (cat);
 }

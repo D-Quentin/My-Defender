@@ -41,7 +41,7 @@ all_t init_malloc(all_t all)
     all.tex.p3_l2 = malloc(sizeof(sfSprite *) * 100);
     all.tex.p4_l0 = malloc(sizeof(sfSprite *) * 100);
     all.tex.p4_l1 = malloc(sizeof(sfSprite *) * 100);
-    all.pos.tower = malloc(sizeof(sfVector2i) * 1000);
+    all.pos.tower = malloc(sizeof(sfVector2i) * 50);
     return (all);
 }
 
