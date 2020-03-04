@@ -9,9 +9,11 @@
 
 char *read_fonction(char *file)
 {
-    int size = 10000;
+    int fd = open(file, O_RDONLY);
+    int size = 1000;
     char *buffer = malloc(sizeof(char) * 1000);
-    read(open(file, O_RDONLY), buffer, size);
+    read(fd, buffer, size);
+    my_putstr(buffer);
     return (buffer);
 }
 
@@ -19,12 +21,9 @@ int compt_bal(char *str)
 {
     int i = 0;
     
-    while (str[i] != '\0')
+    while (str[i] >= '1' && str[i] <= '5')
         i++;
-    if (str[i - 2] == '\n')
-        i = i - 2;
-    else
-        i = i - 1;    
+    my_put_nbr(i);
     return i;
 }
 
@@ -112,24 +111,17 @@ all_t create_sprite_tab(all_t all)
 char *split_line(char *str)
 {
     int i = 0;
-    int c = 0;
-    char *new_line;
+    char *new_line = malloc(sizeof(char) * my_strlen(str) + 1);
 
-    while (str[i] != '\n' && str[i] != '\0')
+    while (str[i] != '\n' && str[i] != '\0') {
+        new_line[i] = str[i];
         i++;
-    i++;
-    new_line = malloc(sizeof(char *) * i);
-    while (c != i) {
-        new_line[c] = str[c];
-        c++;
     }
     return new_line;
 }
 
 all_t init_waves(all_t all)
 {
-    char *waves = read_fonction("src/create_waves.txt");
-    all.str.line = split_line(waves);
     all = create_sprite_tab(all);
     return (all);
 }

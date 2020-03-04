@@ -221,3 +221,5 @@ all_t set_pos_drag(all_t all, sfVector2i mouse);
 void display_bl(all_t all);
 all_t gest_life(all_t all, int spd);
 void display_life(all_t all);
+char *split_line(char *str);
+char *read_fonction(char *file);

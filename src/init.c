@@ -144,6 +144,9 @@ all_t init_counter(all_t all)
     all.cn.nb_t4 = 1;
     all.cn.nb_t = 0;
     all.cn.life = 150;
+    all.cn.line = 0;
+    char *waves = read_fonction("src/create_waves.txt");
+    all.str.line = split_line(waves);
     return (all);
 }
 
