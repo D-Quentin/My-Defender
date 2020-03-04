@@ -9,30 +9,17 @@
 
 all_t init(all_t all)
 {
-    my_putchar('Z');
-    my_putchar('1');
     all = init_clock(all);
-    my_putchar('2');
     all = init_malloc(all);
-    my_putchar('3');
     all = init_tex(all);
-    my_putchar('4');
     all = init_tex2(all);
-    my_putchar('5');
     all = init_counter(all);
-    my_putchar('6');
     all = init_text(all);
-    my_putchar('7');
     all = init_rect(all);
-    my_putchar('8');
     all = init_music(all);
-    my_putchar('9');
     all = init_posi(all);
-    my_putchar('0');
     init_pos(all);
-    my_putchar('A');
     init_pos_text(all);
-    my_putchar('B');
     all.window = set_win("My Runner", all.cn.fps, 1);
     return (all);
 }

@@ -11,12 +11,11 @@ sfRenderWindow *set_win(char *title, int fps, int fullscreen)
 {
     sfRenderWindow *window = NULL;
     sfVideoMode mode = {1920, 1080, 32};
-    my_putchar('n');
+
     if (fullscreen == 0)
         window = sfRenderWindow_create(mode, title, sfClose, NULL);
     else
         window = sfRenderWindow_create(mode, title, sfFullscreen, NULL);
-    my_putchar('m');
     sfRenderWindow_setFramerateLimit(window, fps);
     sfRenderWindow_setKeyRepeatEnabled(window, sfFalse);
     return (window);
