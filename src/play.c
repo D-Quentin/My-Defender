@@ -48,6 +48,8 @@ int check_place(all_t all, sfVector2i mouse)
             return (1);
         i++;
     }
+    if (all.cn.map == 1 && (x < 520 && y > 810))
+        return (1);
     return (0);
 }
 
@@ -128,15 +130,15 @@ all_t drag1(all_t all, sfVector2i mouse)
             all = set_pos_drag(all, mouse);
         }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) == 1)
-                set_pos(all.tex.p1_l0[0], 2000, 2000);
-            else
-                all = set_tower1(all, mouse);
+            if (check_place(all, mouse) != 1)
+                all = set_tower1(all, mouse);  
+            set_pos(all.tex.p1_l0[0], 2000, 2000);
             all.cn.tower = 0;
             set_pos(all.tex.c_green, 2000, 2000);
             set_pos(all.tex.c_red, 2000, 2000);
         }
-    }
+    } else
+        set_pos(all.tex.p1_l0[0], 2000, 2000);
     return (all);
 }
 all_t drag2(all_t all, sfVector2i mouse)
@@ -148,15 +150,15 @@ all_t drag2(all_t all, sfVector2i mouse)
             all = set_pos_drag(all, mouse);
         }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) == 1)
-                set_pos(all.tex.p2_l0[0], 2000, 2000);
-            else
+            if (check_place(all, mouse) != 1)
                 all = set_tower2(all, mouse);
+            set_pos(all.tex.p2_l0[0], 2000, 2000);
             all.cn.tower = 0;
             set_pos(all.tex.c_green, 2000, 2000);
             set_pos(all.tex.c_red, 2000, 2000);
         }
-    }
+    } else
+        set_pos(all.tex.p2_l0[0], 2000, 2000);
     return (all);
 }
 
@@ -169,15 +171,15 @@ all_t drag3(all_t all, sfVector2i mouse)
             all = set_pos_drag(all, mouse);
             }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) == 1)
-                set_pos(all.tex.p3_l0[0], 2000, 2000);
-            else
+            if (check_place(all, mouse) != 1)
                 all = set_tower3(all, mouse);
+            set_pos(all.tex.p3_l0[0], 2000, 2000);
             all.cn.tower = 0;
             set_pos(all.tex.c_green, 2000, 2000);
             set_pos(all.tex.c_red, 2000, 2000);
         }
-    }
+    } else
+        set_pos(all.tex.p3_l0[0], 2000, 2000);
     return (all);
 }
 
@@ -190,18 +192,17 @@ all_t drag4(all_t all, sfVector2i mouse)
             all = set_pos_drag(all, mouse);
             }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) == 1)
-                set_pos(all.tex.p4_l0[0], 2000, 2000);
-            else
+            if (check_place(all, mouse) != 1)
                 all = set_tower4(all, mouse);
+            set_pos(all.tex.p4_l0[0], 2000, 2000);
             all.cn.tower = 0;
             set_pos(all.tex.c_green, 2000, 2000);
             set_pos(all.tex.c_red, 2000, 2000);
         }
-    }
+    } else
+        set_pos(all.tex.p4_l0[0], 2000, 2000);
     return (all);
 }
-
 
 all_t click_p(all_t all)
 {

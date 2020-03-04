@@ -16,6 +16,7 @@ SRC		=	src/my_defender.c		\
 			src/path.c			\
 			src/play.c			\
 			src/waves.c			\
+			src/my_strtowordarray.c	\
 
 CPPFLAGS	=	-I ./include
 

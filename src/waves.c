@@ -20,7 +20,7 @@ char **str_to_chartab(char *str)
     int i = 0;
     int j = 0;
     int k = 0;
-    char **map = malloc(sizeof(char*) * 100000);
+    char **map = malloc(sizeof(char *) * 1000);
 
     while (str[i] != '\0') {
         map[j] = malloc(sizeof(char) * 100000);
@@ -51,12 +51,11 @@ int compt_bal(char *str)
     return i;
 }
 
-all_t first_path12(all_t all)
+all_t first_path12(all_t all, float *spd)
 {
     static int i = 0;
     static int w = 1;
     static int v = 0;
-    
     display_bl(all);
     if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.map)) > 1) {
         if (all.cn.line != 1 && v != all.cn.line - 1) {
@@ -70,16 +69,22 @@ all_t first_path12(all_t all)
             all.pos.ballon = sfSprite_getPosition(all.tex.tab_sprite[i]);
             if (all.pos.ballon.x > 455 && all.pos.ballon.y > 200 &&
                 all.pos.ballon.x < 690 || all.pos.ballon.x > 1425 &&
-                all.pos.ballon.y > 200)
+                all.pos.ballon.y > 200) {
+                all.pos.up.y = -spd[i];
                 sfSprite_move(all.tex.tab_sprite[i], all.pos.up);
+            }
             else if (all.pos.ballon.x >= 690 && all.pos.ballon.y < 416 &&
                      all.pos.ballon.x < 1400 || all.pos.ballon.x >= 925 &&
                      all.pos.ballon.y < 636 && all.pos.ballon.x < 1400 ||
                      all.pos.ballon.x >= 1205 && all.pos.ballon.y < 876 &&
-                     all.pos.ballon.x < 1400)
+                     all.pos.ballon.x < 1400) {
+                all.pos.down.y = spd[i];
                 sfSprite_move(all.tex.tab_sprite[i], all.pos.down);
-            else
+            }
+            else {
+                all.pos.right.x = spd[i];
                 sfSprite_move(all.tex.tab_sprite[i], all.pos.right);
+            }
             i++;
         }
         i = 0;
@@ -91,26 +96,37 @@ all_t first_path12(all_t all)
 all_t create_sprite_tab(all_t all)
 {
     static int i = 0;
-    
+    static float *spd;
     if (i == 0) {
+        spd = malloc(sizeof(int) *1000);
         all.tex.tab_sprite = malloc(sizeof(sfSprite *) * 10000);
         all.cn.line = compt_bal(all.str.tab_waves[0]);
     }
     while (i != all.cn.line) {
-        if (all.str.tab_waves[0][i] == '1')
+        if (all.str.tab_waves[0][i] == '1') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl1.png");
-        if (all.str.tab_waves[0][i] == '2')
+            spd[i] = 1;
+        }
+        if (all.str.tab_waves[0][i] == '2') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl2.png");
-        if (all.str.tab_waves[0][i] == '3')
+            spd[i] = 1.3;
+        }
+        if (all.str.tab_waves[0][i] == '3') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl3.png");
-        if (all.str.tab_waves[0][i] == '4')
+            spd[i] = 1.5;
+        }
+        if (all.str.tab_waves[0][i] == '4') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl4.png");
-        if (all.str.tab_waves[0][i] == '5')
+            spd[i] = 2;
+        }
+        if (all.str.tab_waves[0][i] == '5') {
             all.tex.tab_sprite[i] = create_sprite(all.tex.tab_sprite[i], "files/bal_lvl5.png");
+            spd[i] = 1.6;
+        }
         set_pos(all.tex.tab_sprite[i], 350, 870);            
         i++;
     }
-    all = first_path12(all);
+    all = first_path12(all, spd);
     return all;
 }
 
