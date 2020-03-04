@@ -30,6 +30,18 @@ all_t init_malloc(all_t all)
     all.tex.slid2 = malloc(sizeof(sfSprite *) * 3);
     all.tex.hud = malloc(sizeof(sfSprite *) * 2);
     all.tex.hud2 = malloc(sizeof(sfSprite *) * 2);
+    all.tex.p1_l0 = malloc(sizeof(sfSprite *) * 100);
+    all.tex.p1_l1 = malloc(sizeof(sfSprite *) * 100);
+    all.tex.p1_l2 = malloc(sizeof(sfSprite *) * 100);
+    all.tex.p2_l0 = malloc(sizeof(sfSprite *) * 100);
+    all.tex.p2_l1 = malloc(sizeof(sfSprite *) * 100);
+    all.tex.p2_l2 = malloc(sizeof(sfSprite *) * 100);
+    all.tex.p3_l0 = malloc(sizeof(sfSprite *) * 100);
+    all.tex.p3_l1 = malloc(sizeof(sfSprite *) * 100);
+    all.tex.p3_l2 = malloc(sizeof(sfSprite *) * 100);
+    all.tex.p4_l0 = malloc(sizeof(sfSprite *) * 100);
+    all.tex.p4_l1 = malloc(sizeof(sfSprite *) * 100);
+    all.pos.tower = malloc(sizeof(sfVector2i) * 1000);
     return (all);
 }
 
@@ -53,6 +65,16 @@ void init_pos(all_t all)
     set_pos(all.tex.map2, 1125, 375);
     set_pos(all.tex.hud2[0], 285, 340);
     set_pos(all.tex.hud2[1], 1090, 340);
+    set_pos(all.tex.p1, 40, 10);
+    set_pos(all.tex.p2, 40, 280);
+    set_pos(all.tex.p3, 40, 540);
+    set_pos(all.tex.p4, 40, 800);
+    set_pos(all.tex.p1_l0[0], 2000, 2000);
+    set_pos(all.tex.p2_l0[0], 2000, 2000);
+    set_pos(all.tex.p3_l0[0], 2000, 2000);
+    set_pos(all.tex.p4_l0[0], 2000, 2000);
+    set_pos(all.tex.c_green, 2000, 2000);
+    set_pos(all.tex.c_red, 2000, 2000);
 }
 
 all_t init_tex(all_t all)
@@ -87,17 +109,10 @@ all_t init_tex(all_t all)
 
 all_t init_tex2(all_t all)
 {
-    all.tex.p1_lvl0 = create_sprite(all.tex.p1_lvl0, "files/p1_lvl0.png");
-    all.tex.p1_lvl1 = create_sprite(all.tex.p1_lvl1, "files/p1_lvl1.png");
-    all.tex.p1_lvl2 = create_sprite(all.tex.p1_lvl2, "files/p1_lvl2.png");
-    all.tex.p2_lvl0 = create_sprite(all.tex.p2_lvl0, "files/p2_lvl0.png");
-    all.tex.p2_lvl1 = create_sprite(all.tex.p2_lvl1, "files/p2_lvl1.png");
-    all.tex.p2_lvl2 = create_sprite(all.tex.p2_lvl2, "files/p2_lvl2.png");
-    all.tex.p3_lvl0 = create_sprite(all.tex.p3_lvl0, "files/p3_lvl0.png");
-    all.tex.p3_lvl1 = create_sprite(all.tex.p3_lvl1, "files/p3_lvl1.png");
-    all.tex.p3_lvl2 = create_sprite(all.tex.p3_lvl2, "files/p3_lvl2.png");
-    all.tex.p4_lvl0 = create_sprite(all.tex.p4_lvl0, "files/p4_lvl0.png");
-    all.tex.p1_lvl1 = create_sprite(all.tex.p1_lvl1, "files/p1_lvl1.png");
+    all.tex.p1_l0[0] = create_sprite(all.tex.p1_l0[0], "files/p1_l0.png");
+    all.tex.p2_l0[0] = create_sprite(all.tex.p2_l0[0], "files/p2_l0.png");
+    all.tex.p3_l0[0] = create_sprite(all.tex.p3_l0[0], "files/p3_l0.png");
+    all.tex.p4_l0[0] = create_sprite(all.tex.p4_l0[0], "files/p4_l0.png");
     all.tex.p1 = create_sprite(all.tex.p1, "files/p1.png");
     all.tex.p2 = create_sprite(all.tex.p2, "files/p2.png");
     all.tex.p3 = create_sprite(all.tex.p3, "files/p3.png");
@@ -106,6 +121,8 @@ all_t init_tex2(all_t all)
     all.tex.fullmap1bis = create_sprite(all.tex.fullmap1bis, "files/map1bis.png");
     all.tex.fullmap2 = create_sprite(all.tex.fullmap2, "files/fullmap2.png");
     all.tex.fullmap2bis = create_sprite(all.tex.fullmap2bis, "files/map2bis.png");
+    all.tex.c_green = create_sprite(all.tex.c_green, "files/c_green.png");
+    all.tex.c_red = create_sprite(all.tex.c_red, "files/c_red.png");
     return (all);
 }
 
@@ -119,6 +136,13 @@ all_t init_counter(all_t all)
     all.cn.map = 0;
     all.cn.play = 0;
     all.cn.place_bl = 0;
+    all.cn.tower = 0;
+    all.cn.money = 3000;
+    all.cn.nb_t1 = 1;
+    all.cn.nb_t2 = 1;
+    all.cn.nb_t3 = 1;
+    all.cn.nb_t4 = 1;
+    all.cn.nb_t = 0;
     return (all);
 }
 
@@ -143,6 +167,7 @@ all_t init_rect(all_t all)
 all_t init_clock(all_t all)
 {
     all.cl.map = sfClock_create();
+    all.cl.d = sfClock_create();
     return (all);
 }
 

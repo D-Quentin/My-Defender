@@ -51,19 +51,6 @@ int compt_bal(char *str)
     return i;
 }
 
-void display_bl(all_t all)
-{
-    int i = 0;
-    sfRenderWindow_clear(all.window, sfBlack);
-    sfRenderWindow_drawSprite(all.window, all.tex.fullmap1bis, NULL);
-    while (i != all.cn.line) {
-        sfRenderWindow_drawSprite(all.window, all.tex.tab_sprite[i], NULL);
-        i++;
-    }
-    sfRenderWindow_drawSprite(all.window, all.tex.fullmap1, NULL);    
-    sfRenderWindow_display(all.window);
-}
-
 all_t first_path12(all_t all)
 {
     static int i = 0;

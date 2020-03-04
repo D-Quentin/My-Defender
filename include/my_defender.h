@@ -44,17 +44,17 @@ struct texture_s {
     sfSprite *fullmap2;
     sfSprite *fullmap1bis;
     sfSprite *fullmap2bis;
-    sfSprite *p1_lvl0;
-    sfSprite *p1_lvl1;
-    sfSprite *p1_lvl2;
-    sfSprite *p2_lvl0;
-    sfSprite *p2_lvl1;
-    sfSprite *p2_lvl2;
-    sfSprite *p3_lvl0;
-    sfSprite *p3_lvl1;
-    sfSprite *p3_lvl2;
-    sfSprite *p4_lvl0;
-    sfSprite *p4_lvl1;
+    sfSprite **p1_l0;
+    sfSprite **p1_l1;
+    sfSprite **p1_l2;
+    sfSprite **p2_l0;
+    sfSprite **p2_l1;
+    sfSprite **p2_l2;
+    sfSprite **p3_l0;
+    sfSprite **p3_l1;
+    sfSprite **p3_l2;
+    sfSprite **p4_l0;
+    sfSprite **p4_l1;
     sfSprite *setting;
     sfSprite *lboard;
     sfSprite *exit;
@@ -69,6 +69,8 @@ struct texture_s {
     sfSprite *p2;
     sfSprite *p3;
     sfSprite *p4;
+    sfSprite *c_red;
+    sfSprite *c_green;
     sfSprite **tab_sprite;
 };
 
@@ -83,6 +85,13 @@ struct counter_s {
     int fps;
     int window;
     int map;
+    int tower;
+    int money;
+    int nb_t;
+    int nb_t1;
+    int nb_t2;
+    int nb_t3;
+    int nb_t4;
     int place_bl;
     int line;
 };
@@ -107,6 +116,7 @@ struct text_s {
 typedef struct clocks_s clocks_t;
 struct clocks_s {
     sfClock *map;
+    sfClock *d;
 };
 
 typedef struct music_s music_t;
@@ -115,7 +125,7 @@ struct music_s {
 
 typedef struct str_s str_t;
 struct str_s {
-    char **tab_waves;   
+    char **tab_waves;
 };
 
 typedef struct pos_s pos_t;
@@ -130,6 +140,7 @@ struct pos_s {
     sfVector2f down_right;
     sfVector2f down_left;
     sfVector2f up_left;
+    sfVector2i *tower;
 };
 
 typedef struct all_s all_t;
@@ -190,4 +201,17 @@ all_t play(all_t all);
 all_t second_path_end(all_t all);
 void display_play(all_t all);
 all_t init_waves(all_t all);
-    
+all_t gest_drag(all_t all);
+all_t click_p(all_t all);
+all_t drag1(all_t all, sfVector2i mouse);
+all_t drag2(all_t all, sfVector2i mouse);
+all_t drag3(all_t all, sfVector2i mouse);
+all_t drag4(all_t all, sfVector2i mouse);
+int check_place(all_t all, sfVector2i mouse);
+all_t set_tower1(all_t all, sfVector2i mouse);
+all_t set_tower2(all_t all, sfVector2i mouse);
+all_t set_tower3(all_t all, sfVector2i mouse);
+all_t set_tower4(all_t all, sfVector2i mouse);
+void display_tower(all_t all);
+all_t set_pos_drag(all_t all, sfVector2i mouse);
+void display_bl(all_t all);
