@@ -13,7 +13,7 @@ all_t play(all_t all)
         if (all.cn.map == 1)
             all = init_waves(all);
         else
-            second_path(all);
+            all = init_waves(all);
         all = gest_drag(all);
         display_play(all);
     }

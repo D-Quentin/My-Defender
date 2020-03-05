@@ -28,11 +28,11 @@ struct texture_s {
     sfSprite *title;
     sfSprite *back;
     sfSprite *play;
-    sfSprite *bal_lvl1;
-    sfSprite *bal_lvl2;
-    sfSprite *bal_lvl3;
-    sfSprite *bal_lvl4;
-    sfSprite *bal_lvl5;
+    sfSprite *b1;
+    sfSprite *b2;
+    sfSprite *b3;
+    sfSprite *b4;
+    sfSprite *b5;
     sfSprite **case1;
     sfSprite **case2;
     sfSprite **case3;
@@ -71,7 +71,7 @@ struct texture_s {
     sfSprite *p4;
     sfSprite *c_red;
     sfSprite *c_green;
-    sfSprite **tab_sprite;
+    sfSprite **tab;
 };
 
 typedef struct counter_s counter_t;
@@ -97,6 +97,8 @@ struct counter_s {
     int life;
     int road_x;
     int road_y;
+    int max;
+    float *spd;
 };
 
 typedef struct rect_s rect_t;

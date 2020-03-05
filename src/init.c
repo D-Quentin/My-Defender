@@ -81,11 +81,11 @@ all_t init_tex(all_t all)
 {
     all.tex.title = create_sprite(all.tex.title, "files/title.png");
     all.tex.play = create_sprite(all.tex.play, "files/play.png");
-    all.tex.bal_lvl1 = create_sprite(all.tex.bal_lvl1, "files/bal_lvl1.png");
-    all.tex.bal_lvl2 = create_sprite(all.tex.bal_lvl2, "files/bal_lvl2.png");
-    all.tex.bal_lvl3 = create_sprite(all.tex.bal_lvl3, "files/bal_lvl3.png");
-    all.tex.bal_lvl4 = create_sprite(all.tex.bal_lvl4, "files/bal_lvl4.png");
-    all.tex.bal_lvl5 = create_sprite(all.tex.bal_lvl5, "files/bal_lvl5.png");
+    all.tex.b1 = create_sprite(all.tex.b1, "files/b1.png");
+    all.tex.b2 = create_sprite(all.tex.b2, "files/b2.png");
+    all.tex.b3 = create_sprite(all.tex.b3, "files/b3.png");
+    all.tex.b4 = create_sprite(all.tex.b4, "files/b4.png");
+    all.tex.b5 = create_sprite(all.tex.b5, "files/b5.png");
     all.tex.map1 = create_sprite(all.tex.map1, "files/map1.png");
     all.tex.map2 = create_sprite(all.tex.map2, "files/map2.png");
     all.tex.setting = create_sprite(all.tex.setting, "files/setting.png");
@@ -145,8 +145,8 @@ all_t init_counter(all_t all)
     all.cn.nb_t = 0;
     all.cn.life = 150;
     all.cn.line = 0;
-    char *waves = read_fonction("src/create_waves.txt");
-    all.str.line = split_line(waves);
+    all.cn.max = 1;
+    all.str.line = split_line(read_fonction("src/create_waves.txt"));
     return (all);
 }
 

@@ -38,7 +38,7 @@ all_t choose_map(all_t all)
             all.pos.ballon.y = 450;
         }
     }
-    set_pos(all.tex.bal_lvl1, all.pos.ballon.x, all.pos.ballon.y);
+    set_pos(all.tex.b1, all.pos.ballon.x, all.pos.ballon.y);
     all.cn.setting = 0;
     all.cn.title = 0;
     all.cn.play = 1;

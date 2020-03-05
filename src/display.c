@@ -54,7 +54,7 @@ void display_bl(all_t all)
     int i = 0;
 
     while (i != all.cn.line) {
-        sfRenderWindow_drawSprite(all.window, all.tex.tab_sprite[i], NULL);
+        sfRenderWindow_drawSprite(all.window, all.tex.tab[i], NULL);
         i++;
     }
 }
