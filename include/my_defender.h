@@ -95,6 +95,8 @@ struct counter_s {
     int place_bl;
     int line;
     int life;
+    int road_x;
+    int road_y;
 };
 
 typedef struct rect_s rect_t;
@@ -113,7 +115,7 @@ struct text_s {
     sfText *fullscreen;
     sfText *choose;
     sfText *life;
-    sfFont *font;
+    sfText *money;
 };
 
 typedef struct clocks_s clocks_t;
@@ -130,6 +132,7 @@ typedef struct str_s str_t;
 struct str_s {
     char **tab_waves;
     char *line;
+    char **map1;
 };
 
 typedef struct pos_s pos_t;
@@ -223,3 +226,4 @@ all_t gest_life(all_t all, int spd);
 void display_life(all_t all);
 char *split_line(char *str);
 char *read_fonction(char *file);
+void display_money(all_t all);

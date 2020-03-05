@@ -162,6 +162,7 @@ all_t init_text(all_t all)
     all.tx.fullscreen = create_text(all.tx.fullscreen, 80, "FULLSCREEN");
     all.tx.choose = create_text(all.tx.choose, 120, "CHOOSE YOUR MAP");
     all.tx.life = create_text(all.tx.life, 85, "150");
+    all.tx.money = create_text(all.tx.money, 85, "150");
     return (all);
 }
 
@@ -184,9 +185,12 @@ all_t init_posi(all_t all)
 {
     all.pos.b.x = 340;
     all.pos.b.y = 480;
+    all.pos.up.x = 0;
     all.pos.up.y = -1;
     all.pos.right.x = 1;
+    all.pos.right.y = 0;
     all.pos.down.y = 1;
+    all.pos.down.x = 0;
     all.pos.up_right.x = 1;
     all.pos.up_right.y = -1;
     all.pos.up_left.x = -1;
@@ -210,4 +214,6 @@ void init_pos_text(all_t all)
     set_pos_text(all.tx.fullscreen, 230, 520);
     set_pos_text(all.tx.choose, 500, 140);
     set_pos_text(all.tx.life, 1710, 5);
+    set_pos_text(all.tx.money, 1710, 100);
+    
 }

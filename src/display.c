@@ -15,6 +15,16 @@ void display_life(all_t all)
     sfText_setString(all.tx.life, life);
     sfRenderWindow_drawText(all.window, all.tx.life, NULL);
 }
+
+void display_money(all_t all)
+{
+    char *money;
+
+    money = my_itoa(all.cn.money);
+    sfText_setString(all.tx.money, money);
+    sfRenderWindow_drawText(all.window, all.tx.money, NULL);
+}
+
 void display_play(all_t all)
 {
     sfRenderWindow_clear(all.window, sfBlack);
@@ -33,6 +43,7 @@ void display_play(all_t all)
     sfRenderWindow_drawSprite(all.window, all.tex.p3, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p4, NULL);
     display_tower(all);
+    display_money(all);
     sfRenderWindow_drawSprite(all.window, all.tex.c_green, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.c_red, NULL);
     sfRenderWindow_display(all.window);
