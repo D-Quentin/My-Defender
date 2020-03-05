@@ -10,10 +10,15 @@
 char *read_fonction(char *file)
 {
     int fd = open(file, O_RDONLY);
-    int size = 1000;
-    char *buffer = malloc(sizeof(char) * 1000);
+    int size = 6;
+    char *buffer = NULL;
+    
+    buffer = malloc(sizeof(char) * size);
     read(fd, buffer, size);
-    my_putstr(buffer);
+    size = my_getnbr(buffer);
+    buffer = malloc(sizeof(char) * (size + 1));
+    read(fd, buffer, size);
+    buffer[size] = '\0';
     return (buffer);
 }
 
@@ -23,7 +28,6 @@ int compt_bal(char *str)
     
     while (str[i] >= '1' && str[i] <= '5')
         i++;
-    my_put_nbr(i);
     return i;
 }
 
