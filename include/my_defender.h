@@ -72,6 +72,7 @@ struct texture_s {
     sfSprite *c_red;
     sfSprite *c_green;
     sfSprite **tab;
+    sfSprite *cache;
 };
 
 typedef struct counter_s counter_t;
@@ -99,6 +100,12 @@ struct counter_s {
     int road_y;
     int max;
     float *spd;
+    int s_play[4];
+    int s_setting[4];
+    int s_exit[4];
+    int s_home[4];
+    int s_hud1[4];
+    int s_hud2[4];
 };
 
 typedef struct rect_s rect_t;
@@ -150,6 +157,8 @@ struct pos_s {
     sfVector2f down_left;
     sfVector2f up_left;
     sfVector2i *tower;
+    sfVector2f scale;
+    sfVector2f rescale;
 };
 
 typedef struct all_s all_t;
@@ -229,3 +238,6 @@ void display_life(all_t all);
 char *split_line(char *str);
 char *read_fonction(char *file);
 void display_money(all_t all);
+int check_on(sfSprite *sprite, int x, int y, all_t all);
+all_t scale_tex(sfSprite *sprite, int *size, all_t all);
+int check_release(sfSprite *sprite, int x, int y, all_t all);

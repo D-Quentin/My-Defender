@@ -15,6 +15,7 @@ all_t play(all_t all)
         else
             all = init_waves(all);
         all = gest_drag(all);
+        all = analyse_event(all);
         display_play(all);
     }
     return (all);

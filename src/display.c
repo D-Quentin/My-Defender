@@ -90,6 +90,7 @@ void display_title(all_t all)
     sfRenderWindow_drawSprite(all.window, all.tex.setting, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.lboard, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.exit, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.cache, NULL);
     sfRenderWindow_display(all.window);
 }
 
@@ -107,6 +108,7 @@ void display_setting(all_t all)
     sfRenderWindow_drawSprite(all.window, all.tex.hud[0], NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.hud[1], NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.arrow, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.cache, NULL);
     sfRenderWindow_drawText(all.window, all.tx.nb_music, NULL);
     sfRenderWindow_drawText(all.window, all.tx.nb_sound, NULL);
     sfRenderWindow_drawText(all.window, all.tx.nb_fps, NULL);

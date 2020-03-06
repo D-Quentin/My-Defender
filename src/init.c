@@ -75,6 +75,7 @@ void init_pos(all_t all)
     set_pos(all.tex.p4_l0[0], 2000, 2000);
     set_pos(all.tex.c_green, 2000, 2000);
     set_pos(all.tex.c_red, 2000, 2000);
+    set_pos(all.tex.cache, 2000, 2000);
 }
 
 all_t init_tex(all_t all)
@@ -123,6 +124,7 @@ all_t init_tex2(all_t all)
     all.tex.fullmap2bis = create_sprite(all.tex.fullmap2bis, "files/map2bis.png");
     all.tex.c_green = create_sprite(all.tex.c_green, "files/c_green.png");
     all.tex.c_red = create_sprite(all.tex.c_red, "files/c_red.png");
+    all.tex.cache = create_sprite(all.tex.cache, "files/cache.png");
     return (all);
 }
 
@@ -147,6 +149,30 @@ all_t init_counter(all_t all)
     all.cn.line = 0;
     all.cn.max = 1;
     all.str.line = split_line(read_fonction("src/create_waves.txt"));
+    all.cn.s_play[0] = 446;
+    all.cn.s_play[1] = 133;
+    all.cn.s_play[2] = 730;
+    all.cn.s_play[3] = 820;
+    all.cn.s_setting[0] = 92;
+    all.cn.s_setting[1] = 94;
+    all.cn.s_setting[2] = 30;
+    all.cn.s_setting[3] = 840;
+    all.cn.s_exit[0] = 128;
+    all.cn.s_exit[1] = 128;
+    all.cn.s_exit[2] = 1750;
+    all.cn.s_exit[3] = 900;
+    all.cn.s_home[0] = 128;
+    all.cn.s_home[1] = 128;
+    all.cn.s_home[2] = 1750;
+    all.cn.s_home[3] = 900;
+    all.cn.s_hud1[0] = 465;
+    all.cn.s_hud1[1] = 146;
+    all.cn.s_hud1[2] = 200;
+    all.cn.s_hud1[3] = 300;
+    all.cn.s_hud2[0] = 465;
+    all.cn.s_hud2[1] = 146;
+    all.cn.s_hud2[2] = 200;
+    all.cn.s_hud2[3] = 500;
     return (all);
 }
 
@@ -199,6 +225,10 @@ all_t init_posi(all_t all)
     all.pos.down_right.y = 1;
     all.pos.down_left.x = -1;
     all.pos.down_left.y = 1;
+    all.pos.scale.x = 1.1;
+    all.pos.scale.y = 1.1;
+    all.pos.rescale.x = 1;
+    all.pos.rescale.y = 1;
     return (all);
 }
 

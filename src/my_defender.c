@@ -7,11 +7,11 @@
 
 #include "my.h"
 
-int main(int ac, char **av)
+int main(int ac, char **av, char ** env)
 {
     all_t all;
     
-    if (ac != 1)
+    if (ac != 1 || env == NULL)
         return (84);
     all = init(all);
     while (sfRenderWindow_isOpen(all.window)) {
