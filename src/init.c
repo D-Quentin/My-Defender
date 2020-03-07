@@ -215,6 +215,8 @@ all_t init_posi(all_t all)
     all.pos.up.y = -1;
     all.pos.right.x = 1;
     all.pos.right.y = 0;
+    all.pos.left.x = -1;
+    all.pos.left.y = 0;
     all.pos.down.y = 1;
     all.pos.down.x = 0;
     all.pos.up_right.x = 1;

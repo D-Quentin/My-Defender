@@ -106,6 +106,7 @@ struct counter_s {
     int s_home[4];
     int s_hud1[4];
     int s_hud2[4];
+    int no_life;
 };
 
 typedef struct rect_s rect_t;
@@ -152,6 +153,7 @@ struct pos_s {
     sfVector2f down;
     sfVector2f up;
     sfVector2f pb;
+    sfVector2f left;
     sfVector2f up_right;
     sfVector2f down_right;
     sfVector2f down_left;
@@ -241,3 +243,12 @@ void display_money(all_t all);
 int check_on(sfSprite *sprite, int x, int y, all_t all);
 all_t scale_tex(sfSprite *sprite, int *size, all_t all);
 int check_release(sfSprite *sprite, int x, int y, all_t all);
+all_t init_waves_second(all_t all);
+char *read_fonction(char *file);
+char *read_map(char *file);
+int compt_bal(char *str);
+all_t add_speed(all_t all, int i);
+all_t create_sprite_tab(all_t all);
+char *split_line(char *str);
+char **str_to_chartab(char *str);
+all_t gest_life2(all_t all, int spd);

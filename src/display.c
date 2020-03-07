@@ -11,7 +11,10 @@ void display_life(all_t all)
 {
     char *life;
 
-    life = my_itoa(all.cn.life);
+    if (all.cn.life == 0)
+        life = "0";
+    else
+        life = my_itoa(all.cn.life);
     sfText_setString(all.tx.life, life);
     sfRenderWindow_drawText(all.window, all.tx.life, NULL);
 }
@@ -20,7 +23,10 @@ void display_money(all_t all)
 {
     char *money;
 
-    money = my_itoa(all.cn.money);
+    if (all.cn.money == 0)
+        money = "0";
+    else
+        money = my_itoa(all.cn.money);
     sfText_setString(all.tx.money, money);
     sfRenderWindow_drawText(all.window, all.tx.money, NULL);
 }
