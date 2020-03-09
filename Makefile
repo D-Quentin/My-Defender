@@ -5,18 +5,19 @@
 ## my_hunter
 ##
 
-SRC		=	src/my_defender.c		\
-			src/lib_graphic.c		\
-			src/lib_graphic2.c		\
+SRC		=	src/my_defender.c	\
+			src/lib_graphic.c	\
+			src/lib_graphic2.c	\
 			src/init.c			\
 			src/title.c			\
-			src/display.c			\
+			src/display.c		\
 			src/event.c			\
-			src/slider.c			\
+			src/slider.c		\
 			src/play.c			\
 			src/waves.c			\
 			src/life.c			\
-			src/waves2.c			\
+			src/waves2.c		\
+			src/tower.c			\
 
 CPPFLAGS	=	-I ./include
 

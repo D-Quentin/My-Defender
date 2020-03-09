@@ -31,6 +31,27 @@ void display_money(all_t all)
     sfRenderWindow_drawText(all.window, all.tx.money, NULL);
 }
 
+void display_shoot(all_t all)
+{
+    int i = 0;
+
+    while (i != 100) {
+        if (all.str.nb_dart[i] == '1') {
+            sfRenderWindow_drawSprite(all.window, all.tex.dart[i], NULL);
+        }
+         if (all.str.nb_shuriken[i] == '1') {
+            sfRenderWindow_drawSprite(all.window, all.tex.shuriken[i], NULL);
+        }
+         if (all.str.nb_fireball[i] == '1') {
+            sfRenderWindow_drawSprite(all.window, all.tex.fireball[i], NULL);
+        }
+         if (all.str.nb_laser[i] == '1') {
+            sfRenderWindow_drawSprite(all.window, all.tex.laser[i], NULL);
+        }
+        i++;
+    }
+}
+
 void display_play(all_t all)
 {
     sfRenderWindow_clear(all.window, sfBlack);
@@ -52,6 +73,7 @@ void display_play(all_t all)
     display_money(all);
     sfRenderWindow_drawSprite(all.window, all.tex.c_green, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.c_red, NULL);
+    display_shoot(all);
     sfRenderWindow_display(all.window);
 }
 

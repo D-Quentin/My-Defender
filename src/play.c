@@ -16,6 +16,7 @@ all_t play(all_t all)
             all = init_waves_second(all);
         all = gest_drag(all);
         all = analyse_event(all);
+        all = tower(all);
         display_play(all);
     }
     return (all);
@@ -49,8 +50,12 @@ int check_place(all_t all, sfVector2i mouse)
             return (1);
         i++;
     }
-    if (all.cn.map == 1 && (x < 520 && y > 810))
-        return (1);
+    i = -90;
+    while (i != 60) {
+        if (all.str.map1[(y + i) / 10][(x + i) / 10] != '|')
+            return (1);
+        i += 10;
+    }
     return (0);
 }
 
@@ -58,7 +63,7 @@ all_t set_tower1(all_t all, sfVector2i mouse)
 {
     int i = all.cn.nb_t1;
 
-    all.tex.p1_l0[i] = create_sprite(all.tex.p1_l0[i], "files/p1_l0.png"); 
+    all.tex.p1_l0[i] = create_sprite(all.tex.p1_l0[i], "files/p1_l0.png");
     set_pos(all.tex.p1_l0[i], mouse.x - 30, mouse.y - 30);
     set_pos(all.tex.p1_l0[0], 2000, 2000);
     all.pos.tower[all.cn.nb_t] = mouse;

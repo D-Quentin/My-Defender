@@ -73,6 +73,10 @@ struct texture_s {
     sfSprite *c_green;
     sfSprite **tab;
     sfSprite *cache;
+    sfSprite **dart;
+    sfSprite **laser;
+    sfSprite **fireball;
+    sfSprite **shuriken;
 };
 
 typedef struct counter_s counter_t;
@@ -132,6 +136,10 @@ typedef struct clocks_s clocks_t;
 struct clocks_s {
     sfClock *map;
     sfClock *d;
+    sfClock **dart;
+    sfClock **shuriken;
+    sfClock **fireball;
+    sfClock **laser;
 };
 
 typedef struct music_s music_t;
@@ -143,6 +151,10 @@ struct str_s {
     char **tab_waves;
     char *line;
     char **map1;
+    char *nb_dart;
+    char *nb_laser;
+    char *nb_fireball;
+    char *nb_shuriken;
 };
 
 typedef struct pos_s pos_t;
@@ -163,6 +175,15 @@ struct pos_s {
     sfVector2f rescale;
 };
 
+typedef struct te_s te_t;
+struct te_s {
+    sfTexture *b1;
+    sfTexture *b2;
+    sfTexture *b3;
+    sfTexture *b4;
+    sfTexture *b5;
+};
+
 typedef struct all_s all_t;
 struct all_s {
     sfRenderWindow *window;
@@ -175,6 +196,7 @@ struct all_s {
     rect_t re;
     music_t mu;
     pos_t pos;
+    te_t te;
 };
 
 sfSprite *create_sprite(sfSprite *sprite, char *file);
@@ -252,3 +274,16 @@ all_t create_sprite_tab(all_t all);
 char *split_line(char *str);
 char **str_to_chartab(char *str);
 all_t gest_life2(all_t all, int spd);
+int check_on(sfSprite *sprite, int x, int y, all_t all);
+all_t scale_tex(sfSprite *sprite, int *size, all_t all);
+int check_release(sfSprite *sprite, int x, int y, all_t all);
+all_t tower(all_t all);
+all_t click_tower1(all_t all);
+all_t click_tower2(all_t all);
+all_t click_tower3(all_t all);
+all_t click_tower4(all_t all);
+all_t check_range(sfSprite *sprite, int range, int tower, all_t all);
+all_t create_shoot(all_t all, int i, int range, int tower);
+all_t move_shoot(all_t all, int i, int range, sfSprite *sprite);
+all_t init_str(all_t all);
+all_t kill_ballon(all_t all, int i , int range);
