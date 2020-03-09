@@ -77,6 +77,7 @@ struct texture_s {
     sfSprite **laser;
     sfSprite **fireball;
     sfSprite **shuriken;
+    sfSprite *luffy;
 };
 
 typedef struct counter_s counter_t;
@@ -111,6 +112,7 @@ struct counter_s {
     int s_hud1[4];
     int s_hud2[4];
     int no_life;
+    sfIntRect luffy;
 };
 
 typedef struct rect_s rect_t;
@@ -140,6 +142,7 @@ struct clocks_s {
     sfClock **shuriken;
     sfClock **fireball;
     sfClock **laser;
+    sfClock *luffy;
 };
 
 typedef struct music_s music_t;
@@ -287,3 +290,4 @@ all_t create_shoot(all_t all, int i, int range, int tower);
 all_t move_shoot(all_t all, int i, int range, sfSprite *sprite);
 all_t init_str(all_t all);
 all_t kill_ballon(all_t all, int i , int range);
+all_t animated_sprite(all_t all);

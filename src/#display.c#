@@ -33,7 +33,7 @@ void display_money(all_t all)
 
 void display_endscreen(all_t all)
 {
-    
+    sfRenderWindow_drawSprite(all.window, all.tex.dart[i], NULL);
 }
 void display_shoot(all_t all)
 {
@@ -73,7 +73,6 @@ void display_play(all_t all)
     sfRenderWindow_drawSprite(all.window, all.tex.p2, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p3, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p4, NULL);
-    sfRenderWindow_drawSprite(all.window, all.tex.luffy, NULL);
     display_tower(all);
     display_money(all);
     display_endscreen(all);
