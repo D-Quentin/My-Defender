@@ -111,6 +111,7 @@ void init_pos(all_t all)
     set_pos(all.tex.desc2, 2000, 2000);
     set_pos(all.tex.desc3, 2000, 2000);
     set_pos(all.tex.desc4, 2000, 2000);
+    set_pos(all.tex.luffy, 1460, 0);
 }
 
 
@@ -182,6 +183,7 @@ all_t init_tex2(all_t all)
     all.tex.up3_1 = create_sprite(all.tex.up3_1, "files/up3_1.png");
     all.tex.up3_2 = create_sprite(all.tex.up3_2, "files/up3_2.png");
     all.tex.up4_1 = create_sprite(all.tex.up4_1, "files/up4_1.png");
+    all.tex.luffy = create_sprite(all.tex.luffy, "files/luffy.png");
     return (all);
 }
 
@@ -231,6 +233,9 @@ all_t init_counter(all_t all)
     all.cn.s_hud2[2] = 200;
     all.cn.s_hud2[3] = 500;
     all.cn.click = 0;
+    all.cn.luffy.width = 41;
+    all.cn.luffy.height = 198;
+    
     return (all);
 }
 
@@ -260,6 +265,7 @@ all_t init_clock(all_t all)
 
     all.cl.map = sfClock_create();
     all.cl.d = sfClock_create();
+    all.cl.luffy = sfClock_create();
     while (i != 100) {
         all.cl.dart[i] = sfClock_create();
         all.cl.shuriken[i] = sfClock_create();

@@ -88,6 +88,7 @@ struct texture_s {
     sfSprite *desc2;
     sfSprite *desc3;
     sfSprite *desc4;
+    sfSprite *luffy;
 };
 
 typedef struct counter_s counter_t;
@@ -127,6 +128,7 @@ struct counter_s {
     float *lvl3;
     float *lvl4;
     int click;
+    sfIntRect luffy;
 };
 
 typedef struct rect_s rect_t;
@@ -156,6 +158,7 @@ struct clocks_s {
     sfClock **shuriken;
     sfClock **fireball;
     sfClock **laser;
+    sfClock *luffy;
 };
 
 typedef struct music_s music_t;
@@ -308,3 +311,4 @@ all_t up1(all_t all, int i);
 all_t up2(all_t all, int i);
 all_t up3(all_t all, int i);
 all_t up4(all_t all, int i);
+all_t animated_sprite(all_t all);

@@ -58,7 +58,7 @@ all_t add_speed(all_t all, int i)
         all.cn.spd[i] = 1;
     }
     if (all.str.line[i] == '4') {
-        all.tex.tab[i] = create_sprite(all.tex.tab[i], "files/b4.png");
+        all.tex.tab[i] = create_sprite(all.tex.tab[i], "files/b6.png");
         all.cn.spd[i] = 3;
     }
     return all;
