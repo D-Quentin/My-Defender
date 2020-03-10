@@ -50,8 +50,10 @@ int check_place(all_t all, sfVector2i mouse)
             return (1);
         i++;
     }
-    i = -90;
-    while (i != 60) {
+    if (y < 90 || y > 1040)
+        return (1);
+    i = -80;
+    while (i != 40) {
         if (all.str.map1[(y + i) / 10][(x + i) / 10] != '|')
             return (1);
         i += 10;
@@ -62,11 +64,14 @@ int check_place(all_t all, sfVector2i mouse)
 all_t set_tower1(all_t all, sfVector2i mouse)
 {
     int i = all.cn.nb_t1;
+    sfVector2f or_t = {30, 30};
 
     all.tex.p1_l0[i] = create_sprite(all.tex.p1_l0[i], "files/p1_l0.png");
-    set_pos(all.tex.p1_l0[i], mouse.x - 30, mouse.y - 30);
+    sfSprite_setOrigin(all.tex.p1_l0[i], or_t);
+    set_pos(all.tex.p1_l0[i], mouse.x, mouse.y);
     set_pos(all.tex.p1_l0[0], 2000, 2000);
     all.pos.tower[all.cn.nb_t] = mouse;
+    all.cn.lvl1[i] = 1;
     all.cn.nb_t++;
     all.cn.nb_t1++;
     all.cn.money -= 250;
@@ -76,11 +81,14 @@ all_t set_tower1(all_t all, sfVector2i mouse)
 all_t set_tower2(all_t all, sfVector2i mouse)
 {
     int i = all.cn.nb_t2;
+    sfVector2f or_t = {30, 30};
 
     all.tex.p2_l0[i] = create_sprite(all.tex.p2_l0[i], "files/p2_l0.png");
-    set_pos(all.tex.p2_l0[i], mouse.x - 30, mouse.y - 30);
+    sfSprite_setOrigin(all.tex.p2_l0[i], or_t);
+    set_pos(all.tex.p2_l0[i], mouse.x, mouse.y);
     set_pos(all.tex.p2_l0[0], 2000, 2000);
     all.pos.tower[all.cn.nb_t] = mouse;
+    all.cn.lvl2[i] = 1.2;
     all.cn.nb_t++;
     all.cn.nb_t2++;
     all.cn.money -= 400;
@@ -90,11 +98,14 @@ all_t set_tower2(all_t all, sfVector2i mouse)
 all_t set_tower3(all_t all, sfVector2i mouse)
 {
     int i = all.cn.nb_t3;
+    sfVector2f or_t = {30, 30};
 
     all.tex.p3_l0[i] = create_sprite(all.tex.p3_l0[i], "files/p3_l0.png");
-    set_pos(all.tex.p3_l0[i], mouse.x - 30, mouse.y - 30);
+    sfSprite_setOrigin(all.tex.p3_l0[i], or_t);
+    set_pos(all.tex.p3_l0[i], mouse.x, mouse.y);
     set_pos(all.tex.p3_l0[0], 2000, 2000);
     all.pos.tower[all.cn.nb_t] = mouse;
+    all.cn.lvl3[i] = 1.8;
     all.cn.nb_t++;
     all.cn.nb_t3++;
     all.cn.money -= 600;
@@ -104,11 +115,14 @@ all_t set_tower3(all_t all, sfVector2i mouse)
 all_t set_tower4(all_t all, sfVector2i mouse)
 {
     int i = all.cn.nb_t4;
+    sfVector2f or_t = {30, 30};
 
     all.tex.p4_l0[i] = create_sprite(all.tex.p4_l0[i], "files/p4_l0.png");
-    set_pos(all.tex.p4_l0[i], mouse.x - 30, mouse.y - 30);
+    sfSprite_setOrigin(all.tex.p4_l0[i], or_t);
+    set_pos(all.tex.p4_l0[i], mouse.x, mouse.y);
     set_pos(all.tex.p4_l0[0], 2000, 2000);
     all.pos.tower[all.cn.nb_t] = mouse;
+    all.cn.lvl4[i] = 2.5;
     all.cn.nb_t++;
     all.cn.nb_t4++;
     all.cn.money -= 1500;
@@ -130,6 +144,7 @@ all_t set_pos_drag(all_t all, sfVector2i mouse)
 all_t drag1(all_t all, sfVector2i mouse)
 {
     if (all.cn.tower == 1) {
+        all.cn.click = 0;
         if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
          sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
             set_pos(all.tex.p1_l0[0], mouse.x - 30, mouse.y - 30);
@@ -150,6 +165,7 @@ all_t drag1(all_t all, sfVector2i mouse)
 all_t drag2(all_t all, sfVector2i mouse)
 {
     if (all.cn.tower == 2) {
+        all.cn.click = 0;
         if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
         sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
             set_pos(all.tex.p2_l0[0], mouse.x - 30, mouse.y - 30);
@@ -171,6 +187,7 @@ all_t drag2(all_t all, sfVector2i mouse)
 all_t drag3(all_t all, sfVector2i mouse)
 {
     if (all.cn.tower == 3) {
+        all.cn.click = 0;
         if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
         sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
             set_pos(all.tex.p3_l0[0], mouse.x - 30, mouse.y - 30);
@@ -192,6 +209,7 @@ all_t drag3(all_t all, sfVector2i mouse)
 all_t drag4(all_t all, sfVector2i mouse)
 {
     if (all.cn.tower == 4) {
+        all.cn.click = 0;
         if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
         sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
             set_pos(all.tex.p4_l0[0], mouse.x - 30, mouse.y - 30);

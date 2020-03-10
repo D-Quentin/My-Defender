@@ -72,3 +72,22 @@ int check_release(sfSprite *sprite, int x, int y, all_t all)
     }
     return (0);
 }
+
+int check_click_tower(sfSprite *sprite, int x, int y, all_t all)
+{
+    if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue) {
+        if (sfMouse_getPositionRenderWindow(all.window).x + 30 >= \
+            sfSprite_getPosition(sprite).x && \
+            sfMouse_getPositionRenderWindow(all.window).x <= \
+            sfSprite_getPosition(sprite).x + x && \
+            sfMouse_getPositionRenderWindow(all.window).y + 30>= \
+            sfSprite_getPosition(sprite).y && \
+            sfMouse_getPositionRenderWindow(all.window).y <= \
+            sfSprite_getPosition(sprite).y + y) {
+            all.event.mouseButton.type = sfEvtMouseButtonReleased;
+            return (1);
+        }
+        all.event.mouseButton.type = sfEvtMouseButtonReleased;
+    }
+    return (0);
+}

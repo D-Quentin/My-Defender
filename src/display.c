@@ -64,6 +64,17 @@ void display_play(all_t all)
         display_bl(all);
         sfRenderWindow_drawSprite(all.window, all.tex.fullmap2, NULL);
     }
+    sfRenderWindow_drawSprite(all.window, all.tex.desc1, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.desc2, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.desc3, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.desc4, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.up1_1, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.up1_2, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.up2_1, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.up2_2, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.up3_1, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.up3_2, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.up4_1, NULL);
     display_life(all);
     sfRenderWindow_drawSprite(all.window, all.tex.p1, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p2, NULL);

@@ -53,7 +53,7 @@ all_t find_path_map2_second_part(all_t all, int i)
             all.pos.left.x = -all.cn.spd[i];
             sfSprite_move(all.tex.tab[i], all.pos.left);
         }
-        all = gest_life2(all, all.cn.spd[i]);
+        all = gest_life2(all, all.tex.tab[i], i);
         i++;
     }
     return all;

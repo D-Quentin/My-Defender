@@ -137,7 +137,7 @@ all_t find_path_map1_second_part(all_t all, int i)
             all.pos.right.x = all.cn.spd[i];
             sfSprite_move(all.tex.tab[i], all.pos.right);
         }
-        all = gest_life(all, all.cn.spd[i]);
+        all = gest_life(all, all.tex.tab[i], i);
         i++;
     }
     return all;

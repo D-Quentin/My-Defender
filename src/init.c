@@ -48,6 +48,10 @@ all_t init_malloc(all_t all)
     all.cl.shuriken = malloc(sizeof(sfClock *) * 100);
     all.cl.fireball = malloc(sizeof(sfClock *) * 100);
     all.cl.laser = malloc(sizeof(sfClock *) * 100);
+    all.cn.lvl1 = malloc(sizeof(float) * 100);
+    all.cn.lvl2 = malloc(sizeof(float) * 100);
+    all.cn.lvl3 = malloc(sizeof(float) * 100);
+    all.cn.lvl4 = malloc(sizeof(float) * 100);
     return (all);
 }
 
@@ -96,7 +100,19 @@ void init_pos(all_t all)
     set_pos(all.tex.c_green, 2000, 2000);
     set_pos(all.tex.c_red, 2000, 2000);
     set_pos(all.tex.cache, 2000, 2000);
+    set_pos(all.tex.up1_1, 2000, 2000);
+    set_pos(all.tex.up1_2, 2000, 2000);
+    set_pos(all.tex.up2_1, 2000, 2000);
+    set_pos(all.tex.up2_2, 2000, 2000);
+    set_pos(all.tex.up3_1, 2000, 2000);
+    set_pos(all.tex.up3_2, 2000, 2000);
+    set_pos(all.tex.up4_1, 2000, 2000);
+    set_pos(all.tex.desc1, 2000, 2000);
+    set_pos(all.tex.desc2, 2000, 2000);
+    set_pos(all.tex.desc3, 2000, 2000);
+    set_pos(all.tex.desc4, 2000, 2000);
 }
+
 
 all_t init_te(all_t all)
 {
@@ -155,6 +171,17 @@ all_t init_tex2(all_t all)
     all.tex.c_green = create_sprite(all.tex.c_green, "files/c_green.png");
     all.tex.c_red = create_sprite(all.tex.c_red, "files/c_red.png");
     all.tex.cache = create_sprite(all.tex.cache, "files/cache.png");
+    all.tex.desc1 = create_sprite(all.tex.desc1, "files/desc1.png");
+    all.tex.desc2 = create_sprite(all.tex.desc2, "files/desc2.png");
+    all.tex.desc3 = create_sprite(all.tex.desc3, "files/desc3.png");
+    all.tex.desc4 = create_sprite(all.tex.desc4, "files/desc4.png");
+    all.tex.up1_1 = create_sprite(all.tex.up1_1, "files/up1_1.png");
+    all.tex.up1_2 = create_sprite(all.tex.up1_2, "files/up1_2.png");
+    all.tex.up2_1 = create_sprite(all.tex.up2_1, "files/up2_1.png");
+    all.tex.up2_2 = create_sprite(all.tex.up2_2, "files/up2_2.png");
+    all.tex.up3_1 = create_sprite(all.tex.up3_1, "files/up3_1.png");
+    all.tex.up3_2 = create_sprite(all.tex.up3_2, "files/up3_2.png");
+    all.tex.up4_1 = create_sprite(all.tex.up4_1, "files/up4_1.png");
     return (all);
 }
 
@@ -203,6 +230,7 @@ all_t init_counter(all_t all)
     all.cn.s_hud2[1] = 146;
     all.cn.s_hud2[2] = 200;
     all.cn.s_hud2[3] = 500;
+    all.cn.click = 0;
     return (all);
 }
 
