@@ -89,6 +89,11 @@ struct texture_s {
     sfSprite *desc3;
     sfSprite *desc4;
     sfSprite *luffy;
+    sfSprite *lose;
+    sfSprite *restart;
+    sfSprite *exitt;
+    sfSprite *acceuil;
+    sfSprite *trophe;
 };
 
 typedef struct counter_s counter_t;
@@ -128,6 +133,8 @@ struct counter_s {
     float *lvl3;
     float *lvl4;
     int click;
+    int reset_map;
+    int reset_map_v;
     sfIntRect luffy;
 };
 
@@ -312,3 +319,4 @@ all_t up2(all_t all, int i);
 all_t up3(all_t all, int i);
 all_t up4(all_t all, int i);
 all_t animated_sprite(all_t all);
+all_t endgame_part(all_t all);

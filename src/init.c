@@ -112,6 +112,10 @@ void init_pos(all_t all)
     set_pos(all.tex.desc3, 2000, 2000);
     set_pos(all.tex.desc4, 2000, 2000);
     set_pos(all.tex.luffy, 1460, 0);
+    set_pos(all.tex.acceuil, 620, 600);
+    set_pos(all.tex.restart, 800, 600);
+    set_pos(all.tex.trophe, 980, 600);
+    set_pos(all.tex.exitt, 1160, 600);
 }
 
 
@@ -184,6 +188,11 @@ all_t init_tex2(all_t all)
     all.tex.up3_2 = create_sprite(all.tex.up3_2, "files/up3_2.png");
     all.tex.up4_1 = create_sprite(all.tex.up4_1, "files/up4_1.png");
     all.tex.luffy = create_sprite(all.tex.luffy, "files/luffy.png");
+    all.tex.restart = create_sprite(all.tex.restart, "files/restart.png");
+    all.tex.exitt = create_sprite(all.tex.exitt, "files/exitt.png");
+    all.tex.acceuil = create_sprite(all.tex.acceuil, "files/acceuil.png");
+    all.tex.trophe = create_sprite(all.tex.trophe, "files/trophé.png");
+    all.tex.lose = create_sprite(all.tex.lose, "files/defaite.png");
     return (all);
 }
 
@@ -235,7 +244,8 @@ all_t init_counter(all_t all)
     all.cn.click = 0;
     all.cn.luffy.width = 41;
     all.cn.luffy.height = 198;
-    
+    all.cn.reset_map = 0;
+    all.cn.reset_map_v = 0;
     return (all);
 }
 

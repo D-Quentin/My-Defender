@@ -19,6 +19,7 @@ SRC		=	src/my_defender.c	\
 			src/waves2.c		\
 			src/tower.c			\
 			src/animated_sprite.c		\
+			src/endgame.c			\
 
 CPPFLAGS	=	-I ./include
 

@@ -11,21 +11,19 @@ all_t find_path_map2(all_t all);
 
 all_t create_sprite_tab2(all_t all)
 {
-    static int i = 0;
-
-    if (i == 0) {
+    if (all.cn.reset_map == 0) {
         all.cn.spd = malloc(sizeof(int) *1000);
         all.cn.line = compt_bal(all.str.line);
         all.tex.tab = malloc(sizeof(sfSprite *) * 10000);
     }
-    while (i != all.cn.line) {
-        all = add_speed(all, i);
-        if (all.str.line[i] == '5') {
-            all.tex.tab[i] = create_sprite(all.tex.tab[i], "files/b5.png");
-            all.cn.spd[i] = 2;
+    while (all.cn.reset_map != all.cn.line) {
+        all = add_speed(all, all.cn.reset_map);
+        if (all.str.line[all.cn.reset_map] == '5') {
+            all.tex.tab[all.cn.reset_map] = create_sprite(all.tex.tab[all.cn.reset_map], "files/b5.png");
+            all.cn.spd[all.cn.reset_map] = 2;
         }
-        set_pos(all.tex.tab[i], 340, 675);
-        i++;
+        set_pos(all.tex.tab[all.cn.reset_map], 340, 675);
+        all.cn.reset_map++;
     }
     all = find_path_map2(all);
     return all;
@@ -60,15 +58,14 @@ all_t find_path_map2_second_part(all_t all, int i)
 }
 all_t find_path_map2(all_t all)
 {
-    static int v = 0;
     int i = 0;
 
     if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.map)) > 1) {
-        if (all.cn.line != 1 && v != all.cn.line - 1) {
-            all.pos.ballon = sfSprite_getPosition(all.tex.tab[v]);
+        if (all.cn.line != 1 && all.cn.reset_map_v != all.cn.line - 1) {
+            all.pos.ballon = sfSprite_getPosition(all.tex.tab[all.cn.reset_map_v]);
             if (all.pos.ballon.x > 390) {
                 all.cn.max++;
-                v++;
+                all.cn.reset_map_v++;
             }
         }
         all = find_path_map2_second_part(all, i);

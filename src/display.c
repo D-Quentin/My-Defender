@@ -33,7 +33,13 @@ void display_money(all_t all)
 
 void display_endscreen(all_t all)
 {
-    
+    if (all.cn.life == 0) {
+        sfRenderWindow_drawSprite(all.window, all.tex.lose, NULL);
+        sfRenderWindow_drawSprite(all.window, all.tex.restart, NULL);
+        sfRenderWindow_drawSprite(all.window, all.tex.exitt, NULL);
+        sfRenderWindow_drawSprite(all.window, all.tex.acceuil, NULL);
+        sfRenderWindow_drawSprite(all.window, all.tex.trophe, NULL);
+    }
 }
 void display_shoot(all_t all)
 {

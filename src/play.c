@@ -18,6 +18,7 @@ all_t play(all_t all)
         all = gest_drag(all);
         all = analyse_event(all);
         all = tower(all);
+        all = endgame_part(all);
         display_play(all);
     }
     return (all);
