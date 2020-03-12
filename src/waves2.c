@@ -56,6 +56,47 @@ all_t find_path_map2_second_part(all_t all, int i)
     }
     return all;
 }
+
+int check_end_round(all_t all)
+{
+    int i = 0;
+    int v = 0;
+    int w = compt_bal(all.str.line);
+    static int c = 0;
+
+    if (all.cn.number_waves == all.cn.max_waves + 1) {
+        return 2;
+    }
+    while (i != all.cn.max) {
+        all.pos.ballon = sfSprite_getPosition(all.tex.tab[i]);
+        if (all.pos.ballon.x == 20)
+            v++;
+        i++;
+    }
+    if (v == w)
+        return 1;
+    else
+        return 2;
+}
+
+all_t next_wave(all_t all)
+{
+    static int c = 0;
+
+    if (c == 0) {
+        all = max_waves(read_fonction("src/create_waves.txt"), all);
+        c++;
+    }
+    all.cn.number_waves++;
+    if (all.cn.number_waves != all.cn.max_waves + 1) {
+        all.cn.reset_map = 0;
+        all.cn.reset_map_v = 0;
+        all.cn.max = 1;
+        all.cn.money = all.cn.money + 150;
+        all.str.line = split_line(read_fonction("src/create_waves.txt"), all.cn.number_waves, all);
+    }
+    return all;
+}
 all_t find_path_map2(all_t all)
 {
     int i = 0;
@@ -71,6 +112,8 @@ all_t find_path_map2(all_t all)
         all = find_path_map2_second_part(all, i);
         sfClock_restart(all.cl.map);
     }
+    if (check_end_round(all) == 1)
+        all = next_wave(all);
     return (all);
 }
 
@@ -80,6 +123,7 @@ all_t init_waves_second(all_t all)
     char *map;
 
     if (i == 0) {
+        all = max_waves(read_fonction("src/create_waves.txt"), all);
         map = read_map("src/map2.txt");
         all.str.map1 = str_to_chartab(map);
         i++;

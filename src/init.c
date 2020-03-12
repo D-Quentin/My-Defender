@@ -111,7 +111,7 @@ void init_pos(all_t all)
     set_pos(all.tex.desc2, 2000, 2000);
     set_pos(all.tex.desc3, 2000, 2000);
     set_pos(all.tex.desc4, 2000, 2000);
-    set_pos(all.tex.luffy, 1460, 0);
+    set_pos(all.tex.sablier, 1500, 900);
     set_pos(all.tex.acceuil, 620, 600);
     set_pos(all.tex.restart, 800, 600);
     set_pos(all.tex.trophe, 980, 600);
@@ -187,7 +187,7 @@ all_t init_tex2(all_t all)
     all.tex.up3_1 = create_sprite(all.tex.up3_1, "files/up3_1.png");
     all.tex.up3_2 = create_sprite(all.tex.up3_2, "files/up3_2.png");
     all.tex.up4_1 = create_sprite(all.tex.up4_1, "files/up4_1.png");
-    all.tex.luffy = create_sprite(all.tex.luffy, "files/luffy.png");
+    all.tex.sablier = create_sprite(all.tex.sablier, "files/sablier.png");
     all.tex.restart = create_sprite(all.tex.restart, "files/restart.png");
     all.tex.exitt = create_sprite(all.tex.exitt, "files/exitt.png");
     all.tex.acceuil = create_sprite(all.tex.acceuil, "files/acceuil.png");
@@ -216,7 +216,7 @@ all_t init_counter(all_t all)
     all.cn.life = 150;
     all.cn.line = 0;
     all.cn.max = 1;
-    all.str.line = split_line(read_fonction("src/create_waves.txt"));
+    all.str.line = split_line(read_fonction("src/create_waves.txt"), 1, all);
     all.cn.s_play[0] = 446;
     all.cn.s_play[1] = 133;
     all.cn.s_play[2] = 730;
@@ -242,10 +242,12 @@ all_t init_counter(all_t all)
     all.cn.s_hud2[2] = 200;
     all.cn.s_hud2[3] = 500;
     all.cn.click = 0;
-    all.cn.luffy.width = 41;
-    all.cn.luffy.height = 198;
+    all.cn.sablier.width = 91;
+    all.cn.sablier.height = 730;
     all.cn.reset_map = 0;
     all.cn.reset_map_v = 0;
+    all.cn.number_waves = 1;
+    all.cn.max_waves = 0;
     return (all);
 }
 
@@ -275,7 +277,7 @@ all_t init_clock(all_t all)
 
     all.cl.map = sfClock_create();
     all.cl.d = sfClock_create();
-    all.cl.luffy = sfClock_create();
+    all.cl.sablier = sfClock_create();
     while (i != 100) {
         all.cl.dart[i] = sfClock_create();
         all.cl.shuriken[i] = sfClock_create();

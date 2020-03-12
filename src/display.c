@@ -90,7 +90,7 @@ void display_play(all_t all)
     sfRenderWindow_drawSprite(all.window, all.tex.p2, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p3, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p4, NULL);
-    sfRenderWindow_drawSprite(all.window, all.tex.luffy, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.sablier, NULL);
     display_tower(all);
     display_money(all);
     display_endscreen(all);

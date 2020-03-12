@@ -11,19 +11,16 @@ all_t animated_sprite(all_t all)
 {
     int static mpol = 0;
     
-    if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.luffy)) > 150) {
-        mpol = mpol + 39,6;
-        all.cn.luffy.left = mpol;
-        if (mpol >= 158) {
-            all.cn.luffy.left = 0;
-            mpol = 39,6;
-            sfClock_restart(all.cl.luffy);
+    if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.sablier)) > 1000) {
+        all.cn.sablier.left = mpol;
+        if (mpol >= 728) {
+            all.cn.sablier.left = 0;
+            mpol = 0;
+            sfClock_restart(all.cl.sablier);
         }
-        sfSprite_setTextureRect(all.tex.luffy, all.cn.luffy);
-        sfClock_restart(all.cl.luffy);
+        mpol = mpol + 91;
+        sfSprite_setTextureRect(all.tex.sablier, all.cn.sablier);
+        sfClock_restart(all.cl.sablier);
     }
     return all;
-    /*
-    sfRenderWindow_drawSprite(all.window, all.tex.luffy, NULL);
-    */
 }

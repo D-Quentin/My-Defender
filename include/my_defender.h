@@ -88,7 +88,7 @@ struct texture_s {
     sfSprite *desc2;
     sfSprite *desc3;
     sfSprite *desc4;
-    sfSprite *luffy;
+    sfSprite *sablier;
     sfSprite *lose;
     sfSprite *restart;
     sfSprite *exitt;
@@ -135,7 +135,9 @@ struct counter_s {
     int click;
     int reset_map;
     int reset_map_v;
-    sfIntRect luffy;
+    int number_waves;
+    int max_waves;
+    sfIntRect sablier;
 };
 
 typedef struct rect_s rect_t;
@@ -165,7 +167,7 @@ struct clocks_s {
     sfClock **shuriken;
     sfClock **fireball;
     sfClock **laser;
-    sfClock *luffy;
+    sfClock *sablier;
 };
 
 typedef struct music_s music_t;
@@ -285,7 +287,6 @@ all_t set_pos_drag(all_t all, sfVector2i mouse);
 void display_bl(all_t all);
 all_t gest_life(all_t all, sfSprite *sprite, int i);
 void display_life(all_t all);
-char *split_line(char *str);
 char *read_fonction(char *file);
 void display_money(all_t all);
 int check_on(sfSprite *sprite, int x, int y, all_t all);
@@ -297,7 +298,7 @@ char *read_map(char *file);
 int compt_bal(char *str);
 all_t add_speed(all_t all, int i);
 all_t create_sprite_tab(all_t all);
-char *split_line(char *str);
+char *split_line(char *str, int i, all_t all);
 char **str_to_chartab(char *str);
 all_t gest_life2(all_t all, sfSprite *sprite, int i);
 int check_on(sfSprite *sprite, int x, int y, all_t all);
@@ -320,3 +321,6 @@ all_t up3(all_t all, int i);
 all_t up4(all_t all, int i);
 all_t animated_sprite(all_t all);
 all_t endgame_part(all_t all);
+all_t max_waves(char *str, all_t all);
+int check_end_round(all_t all);
+all_t next_wave(all_t all);

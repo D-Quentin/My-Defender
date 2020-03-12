@@ -12,15 +12,10 @@ all_t find_path_map1(all_t all);
 char *read_fonction(char *file)
 {
     int fd = open(file, O_RDONLY);
-    int size = 6;
-    char *buffer = NULL;
-
-    buffer = malloc(sizeof(char) * size);
+    int size = 100000;
+    char *buffer = malloc(sizeof(char) * size);
+    
     read(fd, buffer, size);
-    size = my_getnbr(buffer);
-    buffer = malloc(sizeof(char) * (size + 1));
-    read(fd, buffer, size);
-    buffer[size] = '\0';
     return (buffer);
 }
 
@@ -43,6 +38,16 @@ int compt_bal(char *str)
     return i;
 }
 
+all_t max_waves(char *str, all_t all)
+{
+    char *new_line = malloc(sizeof(char) * my_strlen(str) + 1);
+    char **waves_round = str_to_chartab(str);
+    static int b = 0;
+
+    all.cn.max_waves = my_getnbr(waves_round[0]);
+    b++;
+    return all;
+}
 all_t add_speed(all_t all, int i)
 {
     if (all.str.line[i] == '1') {
@@ -58,7 +63,7 @@ all_t add_speed(all_t all, int i)
         all.cn.spd[i] = 1;
     }
     if (all.str.line[i] == '4') {
-        all.tex.tab[i] = create_sprite(all.tex.tab[i], "files/b6.png");
+        all.tex.tab[i] = create_sprite(all.tex.tab[i], "files/b4.png");
         all.cn.spd[i] = 3;
     }
     return all;
@@ -83,15 +88,12 @@ all_t create_sprite_tab(all_t all)
     return all;
 }
 
-char *split_line(char *str)
+char *split_line(char *str, int i, all_t all)
 {
-    int i = 0;
     char *new_line = malloc(sizeof(char) * my_strlen(str) + 1);
+    char **waves_round = str_to_chartab(str);
 
-    while (str[i] != '\n' && str[i] != '\0') {
-        new_line[i] = str[i];
-        i++;
-    }
+    new_line = waves_round[i];
     return new_line;
 }
 
@@ -155,6 +157,8 @@ all_t find_path_map1(all_t all)
         all = find_path_map1_second_part(all, i);
         sfClock_restart(all.cl.map);
     }
+    if (check_end_round(all) == 1)
+        all = next_wave(all);
     return (all);
 }
 
@@ -164,6 +168,7 @@ all_t init_waves(all_t all)
     char *map;
 
     if (i == 0) {
+        all = max_waves(read_fonction("src/create_waves.txt"), all);
         map = read_map("src/map1.txt");
         all.str.map1 = str_to_chartab(map);
         i++;
