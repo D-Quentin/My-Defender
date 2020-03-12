@@ -19,6 +19,7 @@ all_t play(all_t all)
         all = analyse_event(all);
         all = tower(all);
         all = endgame_part(all);
+        all = game_pause(all);
         display_play(all);
     }
     return (all);
@@ -90,7 +91,7 @@ all_t set_tower2(all_t all, sfVector2i mouse)
     set_pos(all.tex.p2_l0[i], mouse.x, mouse.y);
     set_pos(all.tex.p2_l0[0], 2000, 2000);
     all.pos.tower[all.cn.nb_t] = mouse;
-    all.cn.lvl2[i] = 1.2;
+    all.cn.lvl2[i] = 1.25;
     all.cn.nb_t++;
     all.cn.nb_t2++;
     all.cn.money -= 400;
@@ -107,7 +108,7 @@ all_t set_tower3(all_t all, sfVector2i mouse)
     set_pos(all.tex.p3_l0[i], mouse.x, mouse.y);
     set_pos(all.tex.p3_l0[0], 2000, 2000);
     all.pos.tower[all.cn.nb_t] = mouse;
-    all.cn.lvl3[i] = 1.8;
+    all.cn.lvl3[i] = 1.75;
     all.cn.nb_t++;
     all.cn.nb_t3++;
     all.cn.money -= 600;
@@ -124,20 +125,25 @@ all_t set_tower4(all_t all, sfVector2i mouse)
     set_pos(all.tex.p4_l0[i], mouse.x, mouse.y);
     set_pos(all.tex.p4_l0[0], 2000, 2000);
     all.pos.tower[all.cn.nb_t] = mouse;
-    all.cn.lvl4[i] = 2.5;
+    all.cn.lvl4[i] = 2.50;
     all.cn.nb_t++;
     all.cn.nb_t4++;
     all.cn.money -= 1500;
     return (all);
 }
 
-all_t set_pos_drag(all_t all, sfVector2i mouse)
+all_t set_pos_drag(all_t all, sfVector2i mouse, float scale)
 {
+    sfVector2f rescale = {scale, scale};
+
+    sfSprite_setScale(all.tex.c_green, rescale);
+    sfSprite_setScale(all.tex.c_red, rescale);
     sfClock_restart(all.cl.d);
-    set_pos(all.tex.c_green, mouse.x - 167, mouse.y - 167);
+    sfClock_restart(all.cl.d);
+    set_pos(all.tex.c_green, mouse.x - 167 * scale, mouse.y - 167 * scale);
     set_pos(all.tex.c_red, 2000, 2000);
     if (check_place(all, mouse) == 1) {
-        set_pos(all.tex.c_red, mouse.x - 167, mouse.y - 167);
+        set_pos(all.tex.c_red, mouse.x - 167 * scale, mouse.y - 167 * scale);
         set_pos(all.tex.c_green, 2000, 2000);
     }
     return (all);
@@ -150,11 +156,11 @@ all_t drag1(all_t all, sfVector2i mouse)
         if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
          sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
             set_pos(all.tex.p1_l0[0], mouse.x - 30, mouse.y - 30);
-            all = set_pos_drag(all, mouse);
+            all = set_pos_drag(all, mouse, 1);
         }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
             if (check_place(all, mouse) != 1)
-                all = set_tower1(all, mouse);  
+                all = set_tower1(all, mouse);
             set_pos(all.tex.p1_l0[0], 2000, 2000);
             all.cn.tower = 0;
             set_pos(all.tex.c_green, 2000, 2000);
@@ -164,6 +170,7 @@ all_t drag1(all_t all, sfVector2i mouse)
         set_pos(all.tex.p1_l0[0], 2000, 2000);
     return (all);
 }
+
 all_t drag2(all_t all, sfVector2i mouse)
 {
     if (all.cn.tower == 2) {
@@ -171,7 +178,7 @@ all_t drag2(all_t all, sfVector2i mouse)
         if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
         sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
             set_pos(all.tex.p2_l0[0], mouse.x - 30, mouse.y - 30);
-            all = set_pos_drag(all, mouse);
+            all = set_pos_drag(all, mouse, 1.25);
         }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
             if (check_place(all, mouse) != 1)
@@ -193,7 +200,7 @@ all_t drag3(all_t all, sfVector2i mouse)
         if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
         sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
             set_pos(all.tex.p3_l0[0], mouse.x - 30, mouse.y - 30);
-            all = set_pos_drag(all, mouse);
+            all = set_pos_drag(all, mouse, 1.75);
             }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
             if (check_place(all, mouse) != 1)
@@ -215,7 +222,7 @@ all_t drag4(all_t all, sfVector2i mouse)
         if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
         sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
             set_pos(all.tex.p4_l0[0], mouse.x - 30, mouse.y - 30);
-            all = set_pos_drag(all, mouse);
+            all = set_pos_drag(all, mouse, 2.5);
             }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
             if (check_place(all, mouse) != 1)
