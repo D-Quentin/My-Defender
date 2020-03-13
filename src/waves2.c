@@ -79,21 +79,45 @@ int check_end_round(all_t all)
         return 2;
 }
 
+all_t wait_sablier(all_t all)
+{
+    int static mpol = 0;
+
+    if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.sablier)) > 1000) {
+        all.cn.sablier.left = mpol;
+        if (mpol >= 728) {
+            all.cn.sablier_gest = 2;
+            all.cn.sablier.left = 0;
+            mpol = 0;
+            sfClock_restart(all.cl.sablier);
+        }
+        mpol = mpol + 91;
+        sfSprite_setTextureRect(all.tex.sablier, all.cn.sablier);
+        sfClock_restart(all.cl.sablier);
+    }
+    return all;
+}
 all_t next_wave(all_t all)
 {
     static int c = 0;
-
-    if (c == 0) {
-        all = max_waves(read_fonction("src/create_waves.txt"), all);
-        c++;
-    }
-    all.cn.number_waves++;
-    if (all.cn.number_waves != all.cn.max_waves + 1) {
-        all.cn.reset_map = 0;
-        all.cn.reset_map_v = 0;
-        all.cn.max = 1;
-        all.cn.money = all.cn.money + 150;
-        all.str.line = split_line(read_fonction("src/create_waves.txt"), all.cn.number_waves, all);
+    set_pos(all.tex.sablier, 1500, 900);
+    all = wait_sablier(all);
+    if (all.cn.sablier_gest == 2) {
+        all.cn.waiting_time--;
+        all.cn.sablier_gest = 1;
+        set_pos(all.tex.sablier, 10000, 900);
+        if (c == 0) {
+            all = max_waves(read_fonction("src/create_waves.txt"), all);
+            c++;
+        }
+        all.cn.number_waves++;
+        if (all.cn.number_waves != all.cn.max_waves + 1) {
+            all.cn.reset_map = 0;
+            all.cn.reset_map_v = 0;
+            all.cn.max = 1;
+            all.cn.money = all.cn.money + 150;
+            all.str.line = split_line(read_fonction("src/create_waves.txt"), all.cn.number_waves, all);
+        }
     }
     return all;
 }
@@ -104,10 +128,12 @@ all_t find_path_map2(all_t all)
     if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.map)) > 1) {
         if (all.cn.line != 1 && all.cn.reset_map_v != all.cn.line - 1) {
             all.pos.ballon = sfSprite_getPosition(all.tex.tab[all.cn.reset_map_v]);
-            if (all.pos.ballon.x > 390) {
+            all = wait(all);
+            if (all.cn.waiting == 2) {
+                all.cn.waiting = 0;
                 all.cn.max++;
                 all.cn.reset_map_v++;
-            }
+            }            
         }
         all = find_path_map2_second_part(all, i);
         sfClock_restart(all.cl.map);

@@ -71,7 +71,7 @@ all_t add_speed(all_t all, int i)
 all_t create_sprite_tab(all_t all)
 {
     if (all.cn.reset_map == 0) {
-        all.cn.spd = malloc(sizeof(int) *1000);
+        all.cn.spd = malloc(sizeof(int) * 1000);
         all.cn.line = compt_bal(all.str.line);
         all.tex.tab = malloc(sizeof(sfSprite *) * 10000);
     }
@@ -142,6 +142,22 @@ all_t find_path_map1_second_part(all_t all, int i)
     }
     return all;
 }
+all_t wait(all_t all)
+{
+    static int mpol = 0;
+
+    if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.sablier)) > 80) {
+        mpol++;
+        if (mpol == 5) {
+            mpol = 0;
+            all.cn.waiting = 2;
+            return all;
+        }
+        sfClock_restart(all.cl.sablier);
+    }
+    return all;
+}
+
 all_t find_path_map1(all_t all)
 {
     int i = 0;
@@ -149,7 +165,9 @@ all_t find_path_map1(all_t all)
     if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.map)) > 1) {
         if (all.cn.line != 1 && all.cn.reset_map_v != all.cn.line - 1) {
             all.pos.ballon = sfSprite_getPosition(all.tex.tab[all.cn.reset_map_v]);
-            if (all.pos.ballon.x > 390) {
+            all = wait(all);
+            if (all.cn.waiting == 2) {
+                all.cn.waiting = 0;
                 all.cn.max++;
                 all.cn.reset_map_v++;
             }

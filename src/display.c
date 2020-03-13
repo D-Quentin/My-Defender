@@ -31,6 +31,14 @@ void display_money(all_t all)
     sfRenderWindow_drawText(all.window, all.tx.money, NULL);
 }
 
+void display_waves(all_t all)
+{
+    char *waves;
+
+    waves = my_itoa(all.cn.number_waves);
+    sfText_setString(all.tx.waves, waves);
+    sfRenderWindow_drawText(all.window, all.tx.waves, NULL);
+}
 void display_endscreen(all_t all)
 {
     if (all.cn.life == 0) {
@@ -86,17 +94,19 @@ void display_play(all_t all)
     sfRenderWindow_drawSprite(all.window, all.tex.up3_2, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.up4_1, NULL);
     display_life(all);
+    sfRenderWindow_drawText(all.window, all.tx.print_waves, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p1, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p2, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p3, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.p4, NULL);
-    sfRenderWindow_drawSprite(all.window, all.tex.sablier, NULL);
     display_tower(all);
     display_money(all);
     display_endscreen(all);
+    display_waves(all);
     sfRenderWindow_drawSprite(all.window, all.tex.c_green, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.c_red, NULL);
     display_shoot(all);
+    sfRenderWindow_drawSprite(all.window, all.tex.sablier, NULL);
     sfRenderWindow_display(all.window);
 }
 

@@ -111,7 +111,7 @@ void init_pos(all_t all)
     set_pos(all.tex.desc2, 2000, 2000);
     set_pos(all.tex.desc3, 2000, 2000);
     set_pos(all.tex.desc4, 2000, 2000);
-    set_pos(all.tex.sablier, 1500, 900);
+    set_pos(all.tex.sablier, 10000, 900);
     set_pos(all.tex.acceuil, 620, 600);
     set_pos(all.tex.restart, 800, 600);
     set_pos(all.tex.trophe, 980, 600);
@@ -248,6 +248,8 @@ all_t init_counter(all_t all)
     all.cn.reset_map_v = 0;
     all.cn.number_waves = 1;
     all.cn.max_waves = 0;
+    all.cn.waiting = 0;
+    all.cn.waiting_time = 80;
     return (all);
 }
 
@@ -264,6 +266,8 @@ all_t init_text(all_t all)
     all.tx.choose = create_text(all.tx.choose, 120, "CHOOSE YOUR MAP");
     all.tx.life = create_text(all.tx.life, 85, "150");
     all.tx.money = create_text(all.tx.money, 85, "150");
+    all.tx.waves = create_text(all.tx.money, 85, "1");
+    all.tx.print_waves = create_text(all.tx.print_waves, 85, "WAVE ");
     return (all);
 }
 
@@ -332,5 +336,6 @@ void init_pos_text(all_t all)
     set_pos_text(all.tx.choose, 500, 140);
     set_pos_text(all.tx.life, 1710, 5);
     set_pos_text(all.tx.money, 1710, 100);
-    
+    set_pos_text(all.tx.waves, 520, 0);
+    set_pos_text(all.tx.print_waves, 320, 0);
 }

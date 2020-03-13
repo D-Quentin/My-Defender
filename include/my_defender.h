@@ -137,6 +137,9 @@ struct counter_s {
     int reset_map_v;
     int number_waves;
     int max_waves;
+    int sablier_gest;
+    int waiting;
+    int waiting_time;
     sfIntRect sablier;
 };
 
@@ -157,6 +160,8 @@ struct text_s {
     sfText *choose;
     sfText *life;
     sfText *money;
+    sfText *waves;
+    sfText *print_waves;
 };
 
 typedef struct clocks_s clocks_t;
@@ -330,3 +335,4 @@ all_t next_wave(all_t all);
 void reset_pos_up(all_t all, int i);
 sfSprite *set_scale(sfSprite *sprite, float x, float y);
 all_t game_pause(all_t all);
+all_t wait(all_t all);
