@@ -116,6 +116,7 @@ void init_pos(all_t all)
     set_pos(all.tex.restart, 800, 600);
     set_pos(all.tex.trophe, 980, 600);
     set_pos(all.tex.exitt, 1160, 600);
+    set_pos(all.tex.pause, 510, 370);
 }
 
 
@@ -193,6 +194,7 @@ all_t init_tex2(all_t all)
     all.tex.acceuil = create_sprite(all.tex.acceuil, "files/acceuil.png");
     all.tex.trophe = create_sprite(all.tex.trophe, "files/trophé.png");
     all.tex.lose = create_sprite(all.tex.lose, "files/defaite.png");
+    all.tex.pause = create_sprite(all.tex.pause, "files/pause.png");
     return (all);
 }
 
@@ -250,6 +252,7 @@ all_t init_counter(all_t all)
     all.cn.max_waves = 0;
     all.cn.waiting = 0;
     all.cn.waiting_time = 80;
+    all.cn.pause = 0;
     return (all);
 }
 
@@ -268,6 +271,7 @@ all_t init_text(all_t all)
     all.tx.money = create_text(all.tx.money, 85, "150");
     all.tx.waves = create_text(all.tx.money, 85, "1");
     all.tx.print_waves = create_text(all.tx.print_waves, 85, "WAVE ");
+    all.tx.pause = create_text(all.tx.pause, 180, "PAUSE");
     return (all);
 }
 
@@ -338,4 +342,5 @@ void init_pos_text(all_t all)
     set_pos_text(all.tx.money, 1710, 100);
     set_pos_text(all.tx.waves, 520, 0);
     set_pos_text(all.tx.print_waves, 320, 0);
+    set_pos_text(all.tx.pause, 710, 350);
 }

@@ -94,6 +94,7 @@ struct texture_s {
     sfSprite *exitt;
     sfSprite *acceuil;
     sfSprite *trophe;
+    sfSprite *pause;
 };
 
 typedef struct counter_s counter_t;
@@ -140,6 +141,7 @@ struct counter_s {
     int sablier_gest;
     int waiting;
     int waiting_time;
+    int pause;
     sfIntRect sablier;
 };
 
@@ -162,6 +164,7 @@ struct text_s {
     sfText *money;
     sfText *waves;
     sfText *print_waves;
+    sfText *pause;
 };
 
 typedef struct clocks_s clocks_t;
@@ -336,3 +339,4 @@ void reset_pos_up(all_t all, int i);
 sfSprite *set_scale(sfSprite *sprite, float x, float y);
 all_t game_pause(all_t all);
 all_t wait(all_t all);
+void display_pause(all_t all);

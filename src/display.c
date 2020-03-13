@@ -107,7 +107,19 @@ void display_play(all_t all)
     sfRenderWindow_drawSprite(all.window, all.tex.c_red, NULL);
     display_shoot(all);
     sfRenderWindow_drawSprite(all.window, all.tex.sablier, NULL);
+    if (all.cn.pause == 1)
+        display_pause(all);
     sfRenderWindow_display(all.window);
+}
+
+void display_pause(all_t all)
+{
+    sfRenderWindow_drawSprite(all.window, all.tex.cache, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.pause, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.restart, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.exitt, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.acceuil, NULL);
+    sfRenderWindow_drawText(all.window, all.tx.pause, NULL);
 }
 
 void display_bl(all_t all)

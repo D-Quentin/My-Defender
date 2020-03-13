@@ -9,12 +9,14 @@
 
 all_t endgame_part(all_t all)
 {
-    if (check_click(all.tex.exitt, 138, 125, all) == 1 && all.cn.life == 0) {
+    if (check_click(all.tex.exitt, 138, 125, all) == 1 && (all.cn.life == 0 || all.cn.pause == 1)) {
         all.cn.play = 0;
+        all.cn.pause = 0;
         sfRenderWindow_close(all.window);
     }
-    if (check_click(all.tex.acceuil, 138, 125, all) == 1 && all.cn.life == 0) {
+    if (check_click(all.tex.acceuil, 138, 125, all) == 1 && (all.cn.life == 0 || all.cn.pause == 1)) {
         all.cn.title = 1;
+        all.cn.pause = 0;
         all.cn.play = 0;
         all.cn.life = 150;
         all.cn.money = 3000;
