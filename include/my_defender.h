@@ -180,6 +180,9 @@ struct clocks_s {
 
 typedef struct music_s music_t;
 struct music_s {
+    sfMusic *music;
+    sfMusic *shoot;
+    sfMusic *upgrade;
 };
 
 typedef struct str_s str_t;
@@ -191,6 +194,7 @@ struct str_s {
     char *nb_laser;
     char *nb_fireball;
     char *nb_shuriken;
+    char *name;
 };
 
 typedef struct pos_s pos_t;
@@ -256,8 +260,6 @@ void set_pos_text(sfText *text, int x, int y);
 sfIntRect create_rect(sfIntRect rect, int width, int height);
 all_t set_fps(all_t all);
 all_t set_window(all_t all);
-char *read_high_score(all_t all);
-char *write_high_score(char *buffer, all_t all);
 all_t setting(all_t all);
 all_t title(all_t all);
 void display_title(all_t all);
@@ -340,3 +342,9 @@ sfSprite *set_scale(sfSprite *sprite, float x, float y);
 all_t game_pause(all_t all);
 all_t wait(all_t all);
 void display_pause(all_t all);
+void backgound_music(all_t all);
+void sound_shoot(all_t all);
+void sound_upgrade(all_t all);
+char *write_high_score(char *buffer, char *file, all_t all);
+char *read_high_score(char *file, all_t all);
+all_t check_best_score(all_t all);

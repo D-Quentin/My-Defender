@@ -1,0 +1,17 @@
+Map :
+
+| = available space for tower
+X = path only available for bloons or pic
+H = path only available for bloons or pic
+S = path only available for bloons or pic
+K = path only available for bloons or pic
+
+Wave :
+
+first number = number of waves
+1 = bloons lvl 1
+2 = bloons lvl 2
+3 = bloons lvl 3
+4 = bloons lvl 4
+5 = bloons lvl 5
+

@@ -7,13 +7,15 @@
 
 #include "my.h"
 
-int main(int ac, char **av, char ** env)
+int main(int ac, char **av, char **env)
 {
     all_t all;
     
-    if (ac != 1 || env == NULL)
+    if (env == NULL || ac != 2)
         return (84);
     all = init(all);
+    all.str.name = av[1];
+    backgound_music(all);
     while (sfRenderWindow_isOpen(all.window)) {
         if (all.cn.title == 1)
             all = title(all);

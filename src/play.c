@@ -14,6 +14,7 @@ all_t play(all_t all)
             all = init_waves(all);
         else
             all = init_waves_second(all);
+        check_best_score(all);    
         all = gest_drag(all);
         all = analyse_event(all);
         all = tower(all);

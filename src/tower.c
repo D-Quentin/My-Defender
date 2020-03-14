@@ -198,6 +198,7 @@ all_t kill_ballon(all_t all, int i , int range)
     if (all.str.line[i] == '1' || (all.str.line[i] == '2' && (range == 253 || range == 235 || range == 236 || range == 336 || range == 420 || range == 337 || range == 504)) || (all.str.line[i] == '3' && (range == 337 || range == 504))) {
         set_pos(all.tex.tab[i], 20, 20);
         all.cn.money += 1;
+        sound_shoot(all);
         return (all);
     }
     if (all.str.line[i] == '2' || (all.str.line[i] == '3' && (range == 253 || range == 235 || range == 236 || range == 336 || range == 420)) || (all.str.line[i] == '4' && (range == 337 || range == 504))) {
@@ -206,6 +207,7 @@ all_t kill_ballon(all_t all, int i , int range)
         all.cn.money += 2;
         all.str.line[i] = '1';
         all.cn.spd[i] = 1;
+        sound_shoot(all);
         return (all);
     }
     if (all.str.line[i] == '3' || (all.str.line[i] == '4' && (range == 253 || range == 235 || range == 236 || range == 336 || range == 420)) || (all.str.line[i] == '5' && (range == 337 || range == 504))) {
@@ -214,6 +216,7 @@ all_t kill_ballon(all_t all, int i , int range)
         all.cn.money += 3;
         all.str.line[i] = '2';
         all.cn.spd[i] = 1;
+        sound_shoot(all);
         return (all);
     }
     if (all.str.line[i] == '4' || (all.str.line[i] == '5' && (range == 253 || range == 235 || range == 236 || range == 336 || range == 420))) {
@@ -222,6 +225,7 @@ all_t kill_ballon(all_t all, int i , int range)
         all.cn.money += 4;
         all.str.line[i] = '3';
         all.cn.spd[i] = 1;
+        sound_shoot(all);
         return (all);
     }
     if (all.str.line[i] == '5') {
@@ -230,6 +234,7 @@ all_t kill_ballon(all_t all, int i , int range)
         all.cn.money += 5;
         all.str.line[i] = '4';
         all.cn.spd[i] = 3;
+        sound_shoot(all);
     }
     return (all);
 }
@@ -248,6 +253,7 @@ all_t up1(all_t all, int i)
             all.tex.c_green = set_scale(all.tex.c_green, all.cn.lvl1[i], all.cn.lvl1[i]);
             set_pos(all.tex.c_green, pos.x - 252, pos.y - 252);
             all.cn.money -= 100;
+            sound_upgrade(all);
         }
     }
     if (all.cn.lvl1[i] == 1.5 ) {
@@ -256,10 +262,12 @@ all_t up1(all_t all, int i)
             all.cn.lvl1[i] = 1.510000000000000009;
             all.tex.p1_l0[i] = create_sprite(all.tex.p1_l0[i], "files/p1_l2.png");
             all.cn.money -= 150;
+            sound_upgrade(all);
         }
     }
     set_pos(all.tex.p1_l0[i], pos.x, pos.y);
     sfSprite_setOrigin(all.tex.p1_l0[i], origin);
+    
     return (all);
 }
 
@@ -277,6 +285,7 @@ all_t up2(all_t all, int i)
             all.tex.c_green = set_scale(all.tex.c_green, all.cn.lvl2[i], all.cn.lvl2[i]);
             set_pos(all.tex.c_green, pos.x - 235, pos.y - 235);
             all.cn.money -= 200;
+            sound_upgrade(all);
         }
     }
     if (all.cn.lvl2[i] == 1.39999997615814209) {
@@ -285,6 +294,7 @@ all_t up2(all_t all, int i)
             all.cn.lvl2[i] = 1.40999999999999992;
             all.tex.p2_l0[i] = create_sprite(all.tex.p2_l0[i], "files/p2_l2.png");
             all.cn.money -= 1000;
+            sound_upgrade(all);
         }
     }
     set_pos(all.tex.p2_l0[i], pos.x, pos.y);
@@ -306,6 +316,7 @@ all_t up3(all_t all, int i)
             all.tex.c_green = set_scale(all.tex.c_green, all.cn.lvl3[i], all.cn.lvl3[i]);
             set_pos(all.tex.c_green, pos.x - 336, pos.y - 336);
             all.cn.money -= 250;
+            sound_upgrade(all);
         }
     }
     if (all.cn.lvl3[i] == 2) {
@@ -314,6 +325,7 @@ all_t up3(all_t all, int i)
             all.cn.lvl3[i] = 2.009999999999999787;
             all.tex.p3_l0[i] = create_sprite(all.tex.p3_l0[i], "files/p3_l2.png");
             all.cn.money -= 500;
+            sound_upgrade(all);
         }
     }
     set_pos(all.tex.p3_l0[i], pos.x, pos.y);
@@ -335,6 +347,7 @@ all_t up4(all_t all, int i)
             all.tex.c_green = set_scale(all.tex.c_green, all.cn.lvl4[i], all.cn.lvl4[i]);
             set_pos(all.tex.c_green, pos.x - 504, pos.y - 504);
             all.cn.money >= 3000;
+            sound_upgrade(all);
         }
     }
     set_pos(all.tex.p4_l0[i], pos.x, pos.y);

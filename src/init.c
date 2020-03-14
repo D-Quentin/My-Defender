@@ -298,6 +298,10 @@ all_t init_clock(all_t all)
 
 all_t init_music(all_t all)
 {
+    all.mu.music = sfMusic_createFromFile("files/background_music.ogg");
+    all.mu.shoot = sfMusic_createFromFile("files/pop1.wav");
+    all.mu.upgrade = sfMusic_createFromFile("files/upgrade.wav");
+    return all;
 }
 
 all_t init_posi(all_t all)

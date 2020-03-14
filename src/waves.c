@@ -146,7 +146,7 @@ all_t wait(all_t all)
 {
     static int mpol = 0;
 
-    if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.sablier)) > 80) {
+    if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.sablier)) > all.cn.waiting_time) {
         mpol++;
         if (mpol == 5) {
             mpol = 0;
