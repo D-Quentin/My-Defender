@@ -9,7 +9,9 @@
 
 char *write_high_score(char *buffer, char *file, all_t all)
 {
-    write(open(file, O_WRONLY | O_TRUNC), buffer, 100);
+    int i = my_strlen(buffer);
+
+    write(open(file, O_WRONLY | O_TRUNC), buffer, i);
     return buffer;
 }
 
