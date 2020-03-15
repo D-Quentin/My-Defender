@@ -13,7 +13,7 @@ all_t acceuil_button(all_t all)
     all.cn.pause = 0;
     all.cn.play = 0;
     all.cn.life = 150;
-    all.cn.money = 3000;
+    all.cn.money = 650;
     all.cn.map = 0;
     all.cn.reset_map = 0;
     all.cn.reset_map_v = 0;
@@ -31,7 +31,7 @@ all_t acceuil_button(all_t all)
 all_t restart_button(all_t all)
 {
     all.cn.life = 150;
-    all.cn.money = 3000;
+    all.cn.money = 650;
     all.cn.reset_map = 0;
     all.cn.reset_map_v = 0;
     all.cn.number_waves = 1;
