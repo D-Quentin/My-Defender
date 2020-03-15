@@ -87,6 +87,7 @@ all_t check_best_score(all_t all)
     char *n3;
     
     if (all.cn.life == 0 && all.cn.reset_best_score == 0) {
+        all.cn.reset_best_score++;
         a = my_getnbr(my_read(nbr1, all));
         b = my_getnbr(my_read(nbr2, all));
         c = my_getnbr(my_read(nbr3, all));
@@ -111,6 +112,6 @@ all_t check_best_score(all_t all)
             my_write(all.str.name, name3, all);
             my_write(my_itoa(all.cn.number_waves), nbr3, all);
         }
-        all.cn.reset_best_score++;
     }
+    return all;
 }

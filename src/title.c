@@ -13,9 +13,14 @@ all_t title(all_t all)
         display_title(all);
         all = analyse_event(all);
         all = scale_tex(all.tex.setting, all.cn.s_setting, all);
+        all = animated_luffy(all); 
         if (check_release(all.tex.setting, 92, 94, all) == 1) {
             all.cn.setting = 1;
             all.cn.title = 0;
+        }
+        all = animated_luffy(all);
+        if (check_click(all.tex.luffy, 40, 41, all) == 1) {
+            all.cn.luffy = 1;
         }
         all = scale_tex(all.tex.exit, all.cn.s_exit, all);
         all = scale_tex(all.tex.play, all.cn.s_play, all);

@@ -124,6 +124,7 @@ void init_pos(all_t all)
     set_pos(all.tex.pause, 510, 370);
     set_pos(all.tex.pic[0], 1615, 995);
     set_pos(all.tex.pic[1], 2000, 2000);
+    set_pos(all.tex.luffy, 941, 540);
 }
 
 
@@ -209,6 +210,7 @@ all_t init_tex2(all_t all)
     all.tex.htp = create_sprite(all.tex.htp, "files/htp.png");
     all.tex.list_tower = create_sprite(all.tex.list_tower, "files/list_tower.png");
     all.tex.tower_icon = create_sprite(all.tex.tower_icon, "files/tower_icon.png");
+    all.tex.luffy = create_sprite(all.tex.luffy, "files/luffy.png");
     return (all);
 }
 
@@ -270,6 +272,7 @@ all_t init_counter(all_t all)
     all.cn.s_hud2[2] = 200;
     all.cn.s_hud2[3] = 500;
     all.cn.click = 0;
+    all.cn.luffy = 0;
     all.cn.sablier.width = 91;
     all.cn.sablier.height = 730;
     all.cn.reset_map = 0;
@@ -281,6 +284,9 @@ all_t init_counter(all_t all)
     all.cn.pause = 0;
     all.cn.nb_pic = 2;
     all.cn.reset_best_score = 0;
+    all.cn.luffyette.width = 41;
+    all.cn.luffyette.height = 198;
+    
     return (all);
 }
 
@@ -314,6 +320,7 @@ all_t init_clock(all_t all)
     all.cl.map = sfClock_create();
     all.cl.d = sfClock_create();
     all.cl.sablier = sfClock_create();
+    all.cl.luffy = sfClock_create();
     while (i != 100) {
         all.cl.dart[i] = sfClock_create();
         all.cl.shuriken[i] = sfClock_create();

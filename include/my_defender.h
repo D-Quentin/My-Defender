@@ -101,6 +101,7 @@ struct texture_s {
     sfSprite *htp_icon;
     sfSprite *list_tower;
     sfSprite *tower_icon;
+    sfSprite *luffy;
 };
 
 typedef struct counter_s counter_t;
@@ -154,7 +155,9 @@ struct counter_s {
     int waiting_time;
     int pause;
     int reset_best_score;
+    int luffy;
     sfIntRect sablier;
+    sfIntRect luffyette;
 };
 
 typedef struct rect_s rect_t;
@@ -194,6 +197,7 @@ struct clocks_s {
     sfClock **fireball;
     sfClock **laser;
     sfClock *sablier;
+    sfClock *luffy;
 };
 
 typedef struct music_s music_t;
@@ -378,3 +382,4 @@ all_t aff_htp(all_t all);
 all_t aff_list_tower(all_t all);
 void display_list_tower(all_t all);
 all_t destroy_tower(all_t all);
+all_t animated_luffy(all_t all);
