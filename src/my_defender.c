@@ -20,6 +20,13 @@ int main(int ac, char **av, char **env)
     all = init(all);
     all.str.name = av[1];
     backgound_music(all);
+    all = main_loop(all);
+    destroy(all);
+    return (0);
+}
+
+all_t main_loop(all_t all)
+{
     while (sfRenderWindow_isOpen(all.window)) {
         if (all.cn.title == 1)
             all = title(all);
@@ -28,5 +35,15 @@ int main(int ac, char **av, char **env)
         if (all.cn.play == 1)
             all = play(all);
     }
-    return (0);
+    return (all);
+}
+
+void destroy(all_t all)
+{
+    sfMusic_stop(all.mu.music);
+    sfMusic_destroy(all.mu.music);
+    sfMusic_stop(all.mu.shoot);
+    sfMusic_destroy(all.mu.shoot);
+    sfMusic_stop(all.mu.upgrade);
+    sfMusic_destroy(all.mu.upgrade);
 }

@@ -11,6 +11,9 @@ SRC		=	src/my_defender.c		\
 			src/init.c			\
 			src/title.c			\
 			src/display.c			\
+			src/display2.c			\
+			src/display3.c			\
+			src/display4.c			\
 			src/event.c			\
 			src/slider.c			\
 			src/play.c			\
@@ -24,6 +27,10 @@ SRC		=	src/my_defender.c		\
 			src/pause.c			\
 			src/music.c			\
 			src/best_score.c		\
+			src/init2.c			\
+			src/init_pos.c		\
+			src/init_tex.c		\
+			src/init_counter.c	\
 
 CPPFLAGS	=	-I ./include
 
