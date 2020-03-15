@@ -7,7 +7,7 @@
 
 #include "my.h"
 
-char *write_high_score(char *buffer, char *file, all_t all)
+char *my_write(char *buffer, char *file, all_t all)
 {
     int i = my_strlen(buffer);
 
@@ -15,10 +15,15 @@ char *write_high_score(char *buffer, char *file, all_t all)
     return buffer;
 }
 
-char *read_high_score(char *file, all_t all)
+char *my_read(char *file, all_t all)
 {
     char *buffer = malloc(sizeof(char) * 10);
-
+    int i = 0;
+    
+    while (i != 10) {
+        buffer[i] = '\0';
+        i++;
+    }
     read(open(file, O_RDONLY), buffer, 100);
 
     return buffer;
@@ -68,12 +73,12 @@ char *add_space(char *str)
 }
 all_t check_best_score(all_t all)
 {
-    char *name1 = "src/name1.txt";
-    char *name2 = "src/name2.txt";
-    char *name3 = "src/name3.txt";
-    char *nbr1 = "src/num_1.txt";
-    char *nbr2 = "src/num_2.txt";
-    char *nbr3 = "src/num_3.txt";
+    char *name1 = "src/n1.txt";
+    char *name2 = "src/n2.txt";
+    char *name3 = "src/n3.txt";
+    char *nbr1 = "src/nu1.txt";
+    char *nbr2 = "src/nu2.txt";
+    char *nbr3 = "src/nu3.txt";
     int a;
     int b;
     int c;
@@ -83,29 +88,29 @@ all_t check_best_score(all_t all)
     static int x = 0;
     
     if (all.cn.life == 0 && x == 0) {
-        a = my_getnbr(read_high_score(nbr1, all));
-        b = my_getnbr(read_high_score(nbr2, all));
-        c = my_getnbr(read_high_score(nbr3, all));
-        n1 = read_high_score(name1, all);
-        n2 = read_high_score(name2, all);
-        n3 = read_high_score(name3, all);
+        a = my_getnbr(my_read(nbr1, all));
+        b = my_getnbr(my_read(nbr2, all));
+        c = my_getnbr(my_read(nbr3, all));
+        n1 = my_read(name1, all);
+        n2 = my_read(name2, all);
+        n3 = my_read(name3, all);
         if (all.cn.number_waves >= a && all.cn.number_waves >= b && all.cn.number_waves >= c) {
-            write_high_score(n2, name3, all);
-            write_high_score(n1, name2, all);
-            write_high_score(all.str.name, name1, all);
-            write_high_score(my_itoa(b), nbr3, all);
-            write_high_score(my_itoa(a), nbr2, all);
-            write_high_score(my_itoa(all.cn.number_waves), nbr1, all);
+            my_write(n2, name3, all);
+            my_write(n1, name2, all);
+            my_write(all.str.name, name1, all);
+            my_write(my_itoa(b), nbr3, all);
+            my_write(my_itoa(a), nbr2, all);
+            my_write(my_itoa(all.cn.number_waves), nbr1, all);
         }
         if (all.cn.number_waves < a && all.cn.number_waves >= b && all.cn.number_waves >= c) {
-            write_high_score(n2, name3, all);
-            write_high_score(all.str.name, name2, all);
-            write_high_score(my_itoa(b), nbr3, all);
-            write_high_score(my_itoa(all.cn.number_waves), nbr2, all);
+            my_write(n2, name3, all);
+            my_write(all.str.name, name2, all);
+            my_write(my_itoa(b), nbr3, all);
+            my_write(my_itoa(all.cn.number_waves), nbr2, all);
         }
         if (all.cn.number_waves < a && all.cn.number_waves < b && all.cn.number_waves >= c) {
-            write_high_score(all.str.name, name3, all);
-            write_high_score(my_itoa(all.cn.number_waves), nbr3, all);
+            my_write(all.str.name, name3, all);
+            my_write(my_itoa(all.cn.number_waves), nbr3, all);
         }
         x++;
     }

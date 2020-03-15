@@ -12,7 +12,7 @@ all_t find_path_map1(all_t all);
 char *read_fonction(char *file)
 {
     int fd = open(file, O_RDONLY);
-    int size = 100000;
+    int size = 5000;
     char *buffer = malloc(sizeof(char) * size);
     
     read(fd, buffer, size);
@@ -22,7 +22,7 @@ char *read_fonction(char *file)
 char *read_map(char *file)
 {
     int size = 21000;
-    char *buffer = malloc(sizeof(int) * size);
+    char *buffer = malloc(sizeof(char) * size);
     int fd = open(file, O_RDONLY);
 
     read(fd, buffer, size);
@@ -100,18 +100,17 @@ char *split_line(char *str, int i, all_t all)
 char **str_to_chartab(char *str)
 {
     int i = 0, j = 0, k = 0;
-    char **map = malloc(sizeof(char *) * 120);
+    char **map = malloc(sizeof(char *) * 12000);
 
     while (str[i] != '\0') {
-        map[j] = malloc(sizeof(char) * 200);
+        map[j] = malloc(sizeof(char) * 20000);
         while (str[i] != '\n' && str[i] != '\0') {
             map[j][k] = str[i];
             i++;
             k++;
         }
-        map[j][k] = '\n';
-        map[j][k + 1] = '\0';
-        if (str[i] == '\0')
+        map[j][k] = '\0';
+        if (str[i - 1] == '\0')
             return map;
         k = 0;
         i++;

@@ -52,6 +52,9 @@ all_t init_malloc(all_t all)
     all.cn.lvl2 = malloc(sizeof(float) * 100);
     all.cn.lvl3 = malloc(sizeof(float) * 100);
     all.cn.lvl4 = malloc(sizeof(float) * 100);
+    all.cn.dura_pic = malloc(sizeof(int) * 100);
+    all.pos.pic = malloc(sizeof(sfVector2i) * 100);
+    all.tex.pic = malloc(sizeof(sfSprite *) * 100);
     return (all);
 }
 
@@ -74,6 +77,8 @@ void init_pos(all_t all)
     set_pos(all.tex.play, 730, 820);
     set_pos(all.tex.setting, 30, 840);
     set_pos(all.tex.lboard, 30, 950);
+    set_pos(all.tex.htp_icon, 30, 730);
+    set_pos(all.tex.tower_icon, 30, 620);
     set_pos(all.tex.exit, 1750, 900);
     set_pos(all.tex.home, 1750, 900);
     set_pos(all.tex.slid[0], 1050, 400);
@@ -117,6 +122,8 @@ void init_pos(all_t all)
     set_pos(all.tex.trophe, 980, 600);
     set_pos(all.tex.exitt, 1160, 600);
     set_pos(all.tex.pause, 510, 370);
+    set_pos(all.tex.pic[0], 1615, 995);
+    set_pos(all.tex.pic[1], 2000, 2000);
 }
 
 
@@ -166,6 +173,8 @@ all_t init_tex2(all_t all)
     all.tex.p2_l0[0] = create_sprite(all.tex.p2_l0[0], "files/p2_l0.png");
     all.tex.p3_l0[0] = create_sprite(all.tex.p3_l0[0], "files/p3_l0.png");
     all.tex.p4_l0[0] = create_sprite(all.tex.p4_l0[0], "files/p4_l0.png");
+    all.tex.pic[0] = create_sprite(all.tex.pic[0], "files/pic.png");
+    all.tex.pic[1] = create_sprite(all.tex.pic[1], "files/pic.png");
     all.tex.p1 = create_sprite(all.tex.p1, "files/p1.png");
     all.tex.p2 = create_sprite(all.tex.p2, "files/p2.png");
     all.tex.p3 = create_sprite(all.tex.p3, "files/p3.png");
@@ -195,6 +204,11 @@ all_t init_tex2(all_t all)
     all.tex.trophe = create_sprite(all.tex.trophe, "files/trophé.png");
     all.tex.lose = create_sprite(all.tex.lose, "files/defaite.png");
     all.tex.pause = create_sprite(all.tex.pause, "files/pause.png");
+    all.tex.highscore = create_sprite(all.tex.highscore, "files/highscore.png");
+    all.tex.htp_icon = create_sprite(all.tex.htp_icon, "files/htp_icon.png");
+    all.tex.htp = create_sprite(all.tex.htp, "files/htp.png");
+    all.tex.list_tower = create_sprite(all.tex.list_tower, "files/list_tower.png");
+    all.tex.tower_icon = create_sprite(all.tex.tower_icon, "files/tower_icon.png");
     return (all);
 }
 
@@ -215,7 +229,7 @@ all_t init_counter(all_t all)
     all.cn.nb_t3 = 1;
     all.cn.nb_t4 = 1;
     all.cn.nb_t = 0;
-    all.cn.life = 150;
+    all.cn.life = 1;
     all.cn.line = 0;
     all.cn.max = 1;
     all.str.line = split_line(read_fonction("src/create_waves.txt"), 1, all);
@@ -227,6 +241,18 @@ all_t init_counter(all_t all)
     all.cn.s_setting[1] = 94;
     all.cn.s_setting[2] = 30;
     all.cn.s_setting[3] = 840;
+    all.cn.s_htp[0] = 96;
+    all.cn.s_htp[1] = 96;
+    all.cn.s_htp[2] = 30;
+    all.cn.s_htp[3] = 730;
+    all.cn.s_tower[0] = 70;
+    all.cn.s_tower[1] = 90;
+    all.cn.s_tower[2] = 30;
+    all.cn.s_tower[3] = 620;
+    all.cn.s_lboard[0] = 92;
+    all.cn.s_lboard[1] = 83;
+    all.cn.s_lboard[2] = 30;
+    all.cn.s_lboard[3] = 950;
     all.cn.s_exit[0] = 128;
     all.cn.s_exit[1] = 128;
     all.cn.s_exit[2] = 1750;
@@ -253,6 +279,7 @@ all_t init_counter(all_t all)
     all.cn.waiting = 0;
     all.cn.waiting_time = 80;
     all.cn.pause = 0;
+    all.cn.nb_pic = 2;
     return (all);
 }
 
@@ -300,7 +327,7 @@ all_t init_music(all_t all)
 {
     all.mu.music = sfMusic_createFromFile("files/background_music.ogg");
     all.mu.shoot = sfMusic_createFromFile("files/pop1.wav");
-    all.mu.upgrade = sfMusic_createFromFile("files/upgrade.wav");
+    all.mu.upgrade = sfMusic_createFromFile("files/upgrade.ogg");
     return all;
 }
 

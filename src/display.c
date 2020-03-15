@@ -33,7 +33,7 @@ void display_money(all_t all)
 
 void display_waves(all_t all)
 {
-    char *waves;
+    char *waves = malloc(sizeof(char) * 10);
 
     waves = my_itoa(all.cn.number_waves);
     sfText_setString(all.tx.waves, waves);
@@ -41,7 +41,12 @@ void display_waves(all_t all)
 }
 void display_endscreen(all_t all)
 {
+    sfIntRect rect = {0, 0, 1920, 1080};
+
     if (all.cn.life == 0) {
+        sfSprite_setTextureRect(all.tex.cache, rect);
+        set_pos(all.tex.cache, 0, 0);
+        sfRenderWindow_drawSprite(all.window, all.tex.cache, NULL);
         sfRenderWindow_drawSprite(all.window, all.tex.lose, NULL);
         sfRenderWindow_drawSprite(all.window, all.tex.restart, NULL);
         sfRenderWindow_drawSprite(all.window, all.tex.exitt, NULL);
@@ -68,6 +73,20 @@ void display_shoot(all_t all)
         }
         i++;
     }
+}
+
+void display_highscore(all_t all)
+{
+    sfRenderWindow_clear(all.window, sfBlack);
+    sfRenderWindow_drawSprite(all.window, all.tex.highscore, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.home, NULL);
+    sfRenderWindow_drawText(all.window, all.tx.name1, NULL);
+    sfRenderWindow_drawText(all.window, all.tx.name2, NULL);
+    sfRenderWindow_drawText(all.window, all.tx.name3, NULL);
+    sfRenderWindow_drawText(all.window, all.tx.wave1, NULL);
+    sfRenderWindow_drawText(all.window, all.tx.wave2, NULL);
+    sfRenderWindow_drawText(all.window, all.tx.wave3, NULL);
+    sfRenderWindow_display(all.window);
 }
 
 void display_play(all_t all)
@@ -101,8 +120,8 @@ void display_play(all_t all)
     sfRenderWindow_drawSprite(all.window, all.tex.p4, NULL);
     display_tower(all);
     display_money(all);
-    display_endscreen(all);
     display_waves(all);
+    display_endscreen(all);
     sfRenderWindow_drawSprite(all.window, all.tex.c_green, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.c_red, NULL);
     display_shoot(all);
@@ -142,6 +161,8 @@ void display_tower(all_t all)
         sfRenderWindow_drawSprite(all.window, all.tex.p3_l0[i], NULL);
     for(int i = 0; i != all.cn.nb_t4; i++)
         sfRenderWindow_drawSprite(all.window, all.tex.p4_l0[i], NULL);
+    for(int i = 0; i != all.cn.nb_pic; i++)
+        sfRenderWindow_drawSprite(all.window, all.tex.pic[i], NULL);
 }
 void display_choose_map(all_t all)
 {
@@ -163,6 +184,8 @@ void display_title(all_t all)
     sfRenderWindow_drawSprite(all.window, all.tex.setting, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.lboard, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.exit, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.htp_icon, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.tower_icon, NULL);
     sfRenderWindow_drawSprite(all.window, all.tex.cache, NULL);
     sfRenderWindow_display(all.window);
 }
@@ -190,5 +213,21 @@ void display_setting(all_t all)
     sfRenderWindow_drawText(all.window, all.tx.music, NULL);
     sfRenderWindow_drawText(all.window, all.tx.windowed, NULL);
     sfRenderWindow_drawText(all.window, all.tx.fullscreen, NULL);
+    sfRenderWindow_display(all.window);
+}
+
+void display_htp(all_t all)
+{
+    sfRenderWindow_clear(all.window, sfBlack);
+    sfRenderWindow_drawSprite(all.window, all.tex.htp, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.home, NULL);
+    sfRenderWindow_display(all.window);
+}
+
+void display_list_tower(all_t all)
+{
+    sfRenderWindow_clear(all.window, sfBlack);
+    sfRenderWindow_drawSprite(all.window, all.tex.list_tower, NULL);
+    sfRenderWindow_drawSprite(all.window, all.tex.home, NULL);
     sfRenderWindow_display(all.window);
 }

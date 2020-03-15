@@ -77,6 +77,7 @@ struct texture_s {
     sfSprite **laser;
     sfSprite **fireball;
     sfSprite **shuriken;
+    sfSprite **pic;
     sfSprite *up1_1;
     sfSprite *up1_2;
     sfSprite *up2_1;
@@ -95,6 +96,11 @@ struct texture_s {
     sfSprite *acceuil;
     sfSprite *trophe;
     sfSprite *pause;
+    sfSprite *highscore;
+    sfSprite *htp;
+    sfSprite *htp_icon;
+    sfSprite *list_tower;
+    sfSprite *tower_icon;
 };
 
 typedef struct counter_s counter_t;
@@ -115,6 +121,7 @@ struct counter_s {
     int nb_t2;
     int nb_t3;
     int nb_t4;
+    int nb_pic;
     int place_bl;
     int line;
     int life;
@@ -128,11 +135,15 @@ struct counter_s {
     int s_home[4];
     int s_hud1[4];
     int s_hud2[4];
+    int s_tower[4];
+    int s_htp[4];
+    int s_lboard[4];
     int no_life;
     float *lvl1;
     float *lvl2;
     float *lvl3;
     float *lvl4;
+    int *dura_pic;
     int click;
     int reset_map;
     int reset_map_v;
@@ -165,6 +176,12 @@ struct text_s {
     sfText *waves;
     sfText *print_waves;
     sfText *pause;
+    sfText *name1;
+    sfText *name2;
+    sfText *name3;
+    sfText *wave1;
+    sfText *wave2;
+    sfText *wave3;
 };
 
 typedef struct clocks_s clocks_t;
@@ -211,6 +228,7 @@ struct pos_s {
     sfVector2f down_left;
     sfVector2f up_left;
     sfVector2i *tower;
+    sfVector2i *pic;
     sfVector2f scale;
     sfVector2f rescale;
 };
@@ -345,6 +363,17 @@ void display_pause(all_t all);
 void backgound_music(all_t all);
 void sound_shoot(all_t all);
 void sound_upgrade(all_t all);
-char *write_high_score(char *buffer, char *file, all_t all);
-char *read_high_score(char *file, all_t all);
+char *my_write(char *buffer, char *file, all_t all);
+char *my_read(char *file, all_t all);
 all_t check_best_score(all_t all);
+all_t drag_pic(all_t all, sfVector2i mouse);
+all_t set_pic(all_t all, sfVector2i mouse);
+all_t set_pos_drag_pic(all_t all, sfVector2i mouse, float scale);
+all_t check_pic(all_t all);
+void display_highscore(all_t all);
+void aff_highscore(all_t all);
+void display_htp(all_t all);
+all_t aff_htp(all_t all);
+all_t aff_list_tower(all_t all);
+void display_list_tower(all_t all);
+all_t destroy_tower(all_t all);

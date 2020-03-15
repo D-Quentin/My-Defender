@@ -34,6 +34,7 @@ all_t gest_drag(all_t all)
     all = drag2(all, mouse);
     all = drag3(all, mouse);
     all = drag4(all, mouse);
+    all = drag_pic(all, mouse);
     return (all);
 }
 
@@ -44,13 +45,13 @@ int check_place(all_t all, sfVector2i mouse)
     int i = 0;
 
     if (x < 325 || x > 1590)
-        return (1);
+        return (2);
     while (i != all.cn.nb_t) {
         if (x - 30 > all.pos.tower[i].x - 90 &&
             x - 30 < all.pos.tower[i].x + 30 &&
             y - 30 > all.pos.tower[i].y - 90 &&
             y - 30 < all.pos.tower[i].y + 30)
-            return (1);
+            return (2);
         i++;
     }
     if (y < 90 || y > 1040)
@@ -139,10 +140,9 @@ all_t set_pos_drag(all_t all, sfVector2i mouse, float scale)
     sfSprite_setScale(all.tex.c_green, rescale);
     sfSprite_setScale(all.tex.c_red, rescale);
     sfClock_restart(all.cl.d);
-    sfClock_restart(all.cl.d);
     set_pos(all.tex.c_green, mouse.x - 167 * scale, mouse.y - 167 * scale);
     set_pos(all.tex.c_red, 2000, 2000);
-    if (check_place(all, mouse) == 1) {
+    if (check_place(all, mouse) != 0) {
         set_pos(all.tex.c_red, mouse.x - 167 * scale, mouse.y - 167 * scale);
         set_pos(all.tex.c_green, 2000, 2000);
     }
@@ -159,7 +159,7 @@ all_t drag1(all_t all, sfVector2i mouse)
             all = set_pos_drag(all, mouse, 1);
         }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) != 1)
+            if (check_place(all, mouse) == 0)
                 all = set_tower1(all, mouse);
             set_pos(all.tex.p1_l0[0], 2000, 2000);
             all.cn.tower = 0;
@@ -181,7 +181,7 @@ all_t drag2(all_t all, sfVector2i mouse)
             all = set_pos_drag(all, mouse, 1.25);
         }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) != 1)
+            if (check_place(all, mouse) == 0)
                 all = set_tower2(all, mouse);
             set_pos(all.tex.p2_l0[0], 2000, 2000);
             all.cn.tower = 0;
@@ -203,7 +203,7 @@ all_t drag3(all_t all, sfVector2i mouse)
             all = set_pos_drag(all, mouse, 1.75);
             }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) != 1)
+            if (check_place(all, mouse) == 0)
                 all = set_tower3(all, mouse);
             set_pos(all.tex.p3_l0[0], 2000, 2000);
             all.cn.tower = 0;
@@ -225,7 +225,7 @@ all_t drag4(all_t all, sfVector2i mouse)
             all = set_pos_drag(all, mouse, 2.5);
             }
         if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) != 1)
+            if (check_place(all, mouse) == 0)
                 all = set_tower4(all, mouse);
             set_pos(all.tex.p4_l0[0], 2000, 2000);
             all.cn.tower = 0;
@@ -234,6 +234,58 @@ all_t drag4(all_t all, sfVector2i mouse)
         }
     } else
         set_pos(all.tex.p4_l0[0], 2000, 2000);
+    return (all);
+}
+
+all_t set_pos_drag_pic(all_t all, sfVector2i mouse, float scale)
+{
+    sfVector2f rescale = {scale, scale};
+
+    sfSprite_setScale(all.tex.c_green, rescale);
+    sfSprite_setScale(all.tex.c_red, rescale);
+    sfClock_restart(all.cl.d);
+    set_pos(all.tex.c_red, mouse.x - 167 * scale, mouse.y - 167 * scale);
+    set_pos(all.tex.c_green, 2000, 2000);
+    if (check_place(all, mouse) == 1) {
+        set_pos(all.tex.c_green, mouse.x - 167 * scale, mouse.y - 167 * scale);
+        set_pos(all.tex.c_red, 2000, 2000);
+    }
+    return (all);
+}
+
+all_t drag_pic(all_t all, sfVector2i mouse)
+{
+    if (all.cn.tower == 5) {
+        all.cn.click = 0;
+        if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
+        sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
+            set_pos(all.tex.pic[1], mouse.x - 30, mouse.y - 30);
+            all = set_pos_drag_pic(all, mouse, 0.2);
+            }
+        if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
+            if (check_place(all, mouse) == 1)
+                all = set_pic(all, mouse);
+            set_pos(all.tex.pic[1], 2000, 2000);
+            all.cn.tower = 0;
+            set_pos(all.tex.c_green, 2000, 2000);
+            set_pos(all.tex.c_red, 2000, 2000);
+        }
+    } else
+        set_pos(all.tex.pic[1], 2000, 2000);
+    return (all);
+}
+
+all_t set_pic(all_t all, sfVector2i mouse)
+{
+    int i = all.cn.nb_pic;
+
+    all.tex.pic[i] = create_sprite(all.tex.pic[i], "files/pic.png");
+    set_pos(all.tex.pic[i], mouse.x - 30, mouse.y - 30);
+    set_pos(all.tex.pic[1], 2000, 2000);
+    all.pos.pic[all.cn.nb_pic] = mouse;
+    all.cn.nb_pic++;
+    all.cn.dura_pic[i] = 0;
+    all.cn.money -= 100;
     return (all);
 }
 
@@ -251,5 +303,8 @@ all_t click_p(all_t all)
     if (check_click(all.tex.p4, 240, 218, all) == 1 &&
         all.cn.money >= 1500)
         all.cn.tower = 4;
+    if (check_click(all.tex.pic[0], 67, 51, all) == 1 &&
+        all.cn.money >= 100)
+        all.cn.tower = 5;
     return (all);
 }

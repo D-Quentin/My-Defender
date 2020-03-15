@@ -21,6 +21,7 @@ all_t tower(all_t all)
         all = up3(all, all.cn.click - 10000);
     if (all.cn.click > 100000)
         all = up4(all, all.cn.click - 100000);
+    all = check_pic(all);
     return (all);
 }
 
@@ -66,6 +67,34 @@ all_t rotate_tower(all_t all, sfSprite *tower, sfSprite *shoot, sfSprite *ballon
     sfSprite_setOrigin(shoot, or_s);
     sfSprite_setRotation(tower, angle);
     sfSprite_setRotation(shoot, angle);
+    return (all);
+}
+
+all_t check_pic(all_t all)
+{
+    int j = 2;
+    int i = 0;
+    sfVector2f pos;
+    sfVector2f pos_b;
+
+    while (i != all.cn.line) {
+        pos_b = sfSprite_getPosition(all.tex.tab[i]);
+        while (j != all.cn.nb_pic) {
+            pos = sfSprite_getPosition(all.tex.pic[j]);
+            if (pos_b.x - 30 > pos.x - 90 &&
+                pos_b.x - 30 < pos.x + 30 &&
+                pos_b.y - 30 > pos.y - 90 &&
+                pos_b.y - 30 < pos.y + 30) {
+                kill_ballon(all, i, 20);
+                all.cn.dura_pic[j]++;
+            }
+            if (all.cn.dura_pic[j] >= 10)
+                set_pos(all.tex.pic[j], 2000, 2000);
+            j++;
+        }
+        j = 2;
+        i++;
+    }
     return (all);
 }
 

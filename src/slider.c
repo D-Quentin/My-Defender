@@ -56,21 +56,32 @@ all_t volume_music(all_t all, int nb)
     if (nb == 0) {
         nb = sfSprite_getPosition(all.tex.slid2[0]).x - 1082;
         nb = (nb * 100) / 580;
-        if (nb <= 0)
+        if (nb <= 0) {
             sfText_setString(all.tx.nb_music, "0%");
-        else if (nb >= 100)
+            sfMusic_setVolume(all.mu.music, 0);
+        } else if (nb >= 100) {
             sfText_setString(all.tx.nb_music, "100%");
-        else
+            sfMusic_setVolume(all.mu.music, 100);
+        } else {
             sfText_setString(all.tx.nb_music, my_strcat(my_itoa(nb), "%"));
+            sfMusic_setVolume(all.mu.music, nb);
+        }
     } else if (nb == 1) {
         nb = sfSprite_getPosition(all.tex.slid2[1]).x - 1082;
         nb = (nb * 100) / 580;
-        if (nb <= 0)
+        if (nb <= 0) {
             sfText_setString(all.tx.nb_sound, "0%");
-        else if (nb >= 100)
+            sfMusic_setVolume(all.mu.shoot, 0);
+            sfMusic_setVolume(all.mu.upgrade, 0);
+        } else if (nb >= 100) {
             sfText_setString(all.tx.nb_sound, "100%");
-        else
+            sfMusic_setVolume(all.mu.shoot, 100);
+            sfMusic_setVolume(all.mu.upgrade, 100);
+        } else {
             sfText_setString(all.tx.nb_sound, my_strcat(my_itoa(nb), "%"));
+            sfMusic_setVolume(all.mu.shoot, nb);
+            sfMusic_setVolume(all.mu.upgrade, nb);
+        }
     }
     return (all);
 }
