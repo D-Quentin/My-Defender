@@ -10,7 +10,7 @@
 int main(int ac, char **av, char **env)
 {
     all_t all;
-    
+
     if (env == NULL)
         return (84);
     if (ac != 2) {

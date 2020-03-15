@@ -229,7 +229,6 @@ struct str_s {
     char *n1;
     char *n2;
     char *n3;
-    
 };
 
 typedef struct pos_s pos_t;
@@ -374,7 +373,7 @@ all_t max_waves(char *str, all_t all);
 int check_end_round(all_t all);
 all_t next_wave(all_t all);
 void reset_pos_up(all_t all, int i);
-sfSprite *set_scale(sfSprite *sprite, float x, float y);
+void set_scale(sfSprite *sprite, float x, float y);
 all_t game_pause(all_t all);
 all_t wait(all_t all);
 void display_pause(all_t all);
@@ -442,3 +441,19 @@ all_t find_path_map2_second_part2(all_t all, int i);
 all_t find_path_map2_second_part(all_t all, int i);
 int check_end_round(all_t all);
 all_t wait_sablier(all_t all);
+all_t find_path_map2(all_t all);
+int check_place2(all_t all, sfVector2i mouse);
+all_t title2(all_t all);
+all_t create_shoot2_2(all_t all, int i, float range, int t);
+all_t create_shoot3_2(all_t all, int i, float range, int t);
+all_t create_shoot4_2(all_t all, int i, float range, int t);
+void rt(all_t all, sfSprite *tower, sfSprite *shoot, sfSprite *bl);
+all_t up1_2(all_t all, int i);
+all_t up2_2(all_t all, int i);
+all_t up3_2(all_t all, int i);
+all_t up4_2(all_t all, int i);
+all_t kill_ballon2(all_t all, int i , int range);
+all_t kill_ballon3(all_t all, int i , int range);
+all_t kill_ballon4(all_t all, int i , int range);
+all_t kill_ballon5(all_t all, int i , int range);
+all_t move_shoot2(all_t all, float r, int tower);

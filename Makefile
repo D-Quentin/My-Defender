@@ -8,26 +8,26 @@
 SRC		=	src/my_defender.c		\
 			src/lib_graphic.c		\
 			src/lib_graphic2.c		\
-			src/init.c			\
-			src/title.c			\
+			src/init.c				\
+			src/title.c				\
 			src/display.c			\
 			src/display2.c			\
 			src/display3.c			\
 			src/display4.c			\
-			src/event.c			\
+			src/event.c				\
 			src/slider.c			\
-			src/play.c			\
-			src/waves.c			\
-			src/life.c			\
+			src/play.c				\
+			src/waves.c				\
+			src/life.c				\
 			src/waves2.c			\
-			src/tower.c			\
-			src/animated_sprite.c		\
+			src/tower.c				\
+			src/animated_sprite.c	\
 			src/endgame.c			\
 			src/lib_graphic3.c		\
-			src/pause.c			\
-			src/music.c			\
+			src/pause.c				\
+			src/music.c				\
 			src/best_score.c		\
-			src/init2.c			\
+			src/init2.c				\
 			src/init_pos.c			\
 			src/init_tex.c			\
 			src/init_counter.c		\
@@ -35,6 +35,17 @@ SRC		=	src/my_defender.c		\
 			src/waves1.c			\
 			src/waves1_1.c			\
 			src/waves2_1.c			\
+			src/set_tower.c			\
+			src/drag.c				\
+			src/drag2.c				\
+			src/setting.c			\
+			src/create_shoot.c		\
+			src/create_shoot2.c		\
+			src/upgrade.c			\
+			src/upgrade2.c			\
+			src/click_tower.c		\
+			src/kill_ballon.c		\
+			src/tower2.c			\
 
 CPPFLAGS	=	-I ./include
 

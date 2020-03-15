@@ -55,3 +55,21 @@ all_t init_music(all_t all)
     all.mu.upgrade = sfMusic_createFromFile("files/upgrade.ogg");
     return all;
 }
+
+void init_pos_text(all_t all)
+{
+    set_pos_text(all.tx.nb_music, 1750, 390);
+    set_pos_text(all.tx.nb_sound, 1750, 590);
+    set_pos_text(all.tx.nb_fps, 30, 790);
+    set_pos_text(all.tx.music, 1300, 300);
+    set_pos_text(all.tx.sound, 1150, 500);
+    set_pos_text(all.tx.fps, 400, 700);
+    set_pos_text(all.tx.windowed, 270, 320);
+    set_pos_text(all.tx.fullscreen, 230, 520);
+    set_pos_text(all.tx.choose, 500, 140);
+    set_pos_text(all.tx.life, 1710, 5);
+    set_pos_text(all.tx.money, 1710, 100);
+    set_pos_text(all.tx.waves, 520, 0);
+    set_pos_text(all.tx.print_waves, 320, 0);
+    set_pos_text(all.tx.pause, 710, 350);
+}

@@ -12,7 +12,7 @@ all_t gest_slider(all_t all, sfSprite *sprite, int x, int nb)
     sfVector2i mouse = sfMouse_getPositionRenderWindow(all.window);
     int move = 0;
     sfVector2f new_pos;
-    
+
     if (check_click(sprite, 52, 100, all) == 1) {
         while (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue) {
             if (sfMouse_getPositionRenderWindow(all.window).x > x &&

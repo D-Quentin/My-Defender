@@ -39,6 +39,7 @@ void display_waves(all_t all)
     sfText_setString(all.tx.waves, waves);
     sfRenderWindow_drawText(all.window, all.tx.waves, NULL);
 }
+
 void display_endscreen(all_t all)
 {
     sfIntRect rect = {0, 0, 1920, 1080};
@@ -54,6 +55,7 @@ void display_endscreen(all_t all)
         sfRenderWindow_drawSprite(all.window, all.tex.trophe, NULL);
     }
 }
+
 void display_shoot(all_t all)
 {
     int i = 0;
@@ -62,13 +64,13 @@ void display_shoot(all_t all)
         if (all.str.nb_dart[i] == '1') {
             sfRenderWindow_drawSprite(all.window, all.tex.dart[i], NULL);
         }
-         if (all.str.nb_shuriken[i] == '1') {
+        if (all.str.nb_shuriken[i] == '1') {
             sfRenderWindow_drawSprite(all.window, all.tex.shuriken[i], NULL);
         }
-         if (all.str.nb_fireball[i] == '1') {
+        if (all.str.nb_fireball[i] == '1') {
             sfRenderWindow_drawSprite(all.window, all.tex.fireball[i], NULL);
         }
-         if (all.str.nb_laser[i] == '1') {
+        if (all.str.nb_laser[i] == '1') {
             sfRenderWindow_drawSprite(all.window, all.tex.laser[i], NULL);
         }
         i++;

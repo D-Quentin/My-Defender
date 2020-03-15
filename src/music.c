@@ -24,4 +24,3 @@ void sound_upgrade(all_t all)
     sfMusic_stop(all.mu.upgrade);
     sfMusic_play(all.mu.upgrade);
 }
-

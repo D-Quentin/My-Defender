@@ -18,7 +18,7 @@ all_t init_counter(all_t all)
     all.cn.play = 0;
     all.cn.place_bl = 0;
     all.cn.tower = 0;
-    all.cn.money = 3000;
+    all.cn.money = 650;
     all.cn.nb_t1 = 1;
     all.cn.nb_t2 = 1;
     all.cn.nb_t3 = 1;
@@ -33,7 +33,7 @@ all_t init_counter(all_t all)
 
 all_t init_counter2(all_t all)
 {
-    all.cn.life = 1;
+    all.cn.life = 150;
     all.cn.line = 0;
     all.cn.max = 1;
     all.str.line = split_line(read_fonction("src/create_waves.txt"), 1, all);

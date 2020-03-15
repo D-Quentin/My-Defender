@@ -29,17 +29,18 @@ void display_bl(all_t all)
 
 void display_tower(all_t all)
 {
-    for(int i = 0; i != all.cn.nb_t1; i++)
+    for (int i = 0; i != all.cn.nb_t1; i++)
         sfRenderWindow_drawSprite(all.window, all.tex.p1_l0[i], NULL);
-    for(int i = 0; i != all.cn.nb_t2; i++)
+    for (int i = 0; i != all.cn.nb_t2; i++)
         sfRenderWindow_drawSprite(all.window, all.tex.p2_l0[i], NULL);
-    for(int i = 0; i != all.cn.nb_t3; i++)
+    for (int i = 0; i != all.cn.nb_t3; i++)
         sfRenderWindow_drawSprite(all.window, all.tex.p3_l0[i], NULL);
-    for(int i = 0; i != all.cn.nb_t4; i++)
+    for (int i = 0; i != all.cn.nb_t4; i++)
         sfRenderWindow_drawSprite(all.window, all.tex.p4_l0[i], NULL);
-    for(int i = 0; i != all.cn.nb_pic; i++)
+    for (int i = 0; i != all.cn.nb_pic; i++)
         sfRenderWindow_drawSprite(all.window, all.tex.pic[i], NULL);
 }
+
 void display_choose_map(all_t all)
 {
     sfRenderWindow_clear(all.window, sfBlack);

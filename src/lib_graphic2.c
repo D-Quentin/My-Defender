@@ -39,10 +39,13 @@ int check_on(sfSprite *sprite, int x, int y, all_t all)
 all_t scale_tex(sfSprite *sprite, int *size, all_t all)
 {
     sfVector2f pos_s = sfSprite_getPosition(sprite);
-    int sx = 0, sy = 0;
+    int sx = 0;
+    int sy = 0;
+    int i = size[0];
 
-    if (check_on(sprite, size[0], size[1], all) == 1 && sfSprite_getScale(sprite).x == 1) {
-        sx += ((1.1 * size[0]) - size[0]) / 2, sy += ((1.1 * size[1]) - size[1]) / 2;
+    if (check_on(sprite, size[0], size[1], all) == 1 &&
+    sfSprite_getScale(sprite).x == 1) {
+        sx += ((1.1 * i) - i) / 2, sy += ((1.1 * size[1]) - size[1]) / 2;
         set_pos(sprite, pos_s.x - sx, pos_s.y - sy);
         sfSprite_setScale(sprite, all.pos.scale);
     }
@@ -80,7 +83,7 @@ int check_click_tower(sfSprite *sprite, int x, int y, all_t all)
             sfSprite_getPosition(sprite).x && \
             sfMouse_getPositionRenderWindow(all.window).x <= \
             sfSprite_getPosition(sprite).x + x && \
-            sfMouse_getPositionRenderWindow(all.window).y + 30>= \
+            sfMouse_getPositionRenderWindow(all.window).y + 30 >= \
             sfSprite_getPosition(sprite).y && \
             sfMouse_getPositionRenderWindow(all.window).y <= \
             sfSprite_getPosition(sprite).y + y) {

@@ -6,7 +6,6 @@
 */
 
 #include "my.h"
-all_t find_path_map2(all_t all);
 
 all_t create_sprite_tab2(all_t all)
 {

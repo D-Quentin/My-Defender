@@ -27,6 +27,7 @@ all_t acceuil_button(all_t all)
     set_pos(all.tex.cache, 2000, 2000);
     return all;
 }
+
 all_t restart_button(all_t all)
 {
     all.cn.life = 150;
@@ -43,6 +44,7 @@ all_t restart_button(all_t all)
     set_pos(all.tex.cache, 2000, 2000);
     return all;
 }
+
 all_t endgame_part(all_t all)
 {
     if (check_click(all.tex.exitt, 138, 125, all) == 1 &&
@@ -73,6 +75,7 @@ all_t destroy_tower2(all_t all)
     all.cn.nb_pic = 2;
     return all;
 }
+
 all_t destroy_tower(all_t all)
 {
     int i = 0;
@@ -92,24 +95,4 @@ all_t destroy_tower(all_t all)
     }
     all = destroy_tower2(all);
     return (all);
-}
-
-void aff_highscore(all_t all)
-{
-    all.tx.name1 = create_text(all.tx.name1, 100, my_read("src/n1.txt", all));
-    all.tx.name2 = create_text(all.tx.name2, 100, my_read("src/n2.txt", all));
-    all.tx.name3 = create_text(all.tx.name3, 100, my_read("src/n3.txt", all));
-    all.tx.wave1 = create_text(all.tx.wave1, 100, my_read("src/nu1.txt", all));
-    all.tx.wave2 = create_text(all.tx.wave2, 100, my_read("src/nu2.txt", all));
-    all.tx.wave3 = create_text(all.tx.wave3, 100, my_read("src/nu3.txt", all));
-    set_pos_text(all.tx.name1, 600, 420);
-    set_pos_text(all.tx.name2, 600, 570);
-    set_pos_text(all.tx.name3, 600, 725);
-    set_pos_text(all.tx.wave1, 1310, 420);
-    set_pos_text(all.tx.wave2, 1310, 570);
-    set_pos_text(all.tx.wave3, 1310, 725);
-    set_pos(all.tex.home, 50, 900);
-    while (check_release(all.tex.home, 128, 128, all) != 1)
-        display_highscore(all);
-    set_pos(all.tex.home, 1750, 900);
 }

@@ -14,7 +14,7 @@ all_t play(all_t all)
             all = init_waves(all);
         else
             all = init_waves_second(all);
-        all = check_best_score(all);    
+        all = check_best_score(all);
         all = gest_drag(all);
         all = analyse_event(all);
         all = tower(all);
@@ -22,19 +22,6 @@ all_t play(all_t all)
         all = game_pause(all);
         display_play(all);
     }
-    return (all);
-}
-
-all_t gest_drag(all_t all)
-{
-    sfVector2i mouse = sfMouse_getPositionRenderWindow(all.window);
-
-    all = click_p(all);
-    all = drag1(all, mouse);
-    all = drag2(all, mouse);
-    all = drag3(all, mouse);
-    all = drag4(all, mouse);
-    all = drag_pic(all, mouse);
     return (all);
 }
 
@@ -54,239 +41,23 @@ int check_place(all_t all, sfVector2i mouse)
             return (2);
         i++;
     }
+    return (check_place2(all, mouse));
+}
+
+int check_place2(all_t all, sfVector2i mouse)
+{
+    int x = mouse.x;
+    int y = mouse.y;
+    int i = -80;
+
     if (y < 90 || y > 1040)
         return (1);
-    i = -80;
     while (i != 40) {
         if (all.str.map1[(y + i) / 10][(x + i) / 10] != '|')
             return (1);
         i += 10;
     }
     return (0);
-}
-
-all_t set_tower1(all_t all, sfVector2i mouse)
-{
-    int i = all.cn.nb_t1;
-    sfVector2f or_t = {30, 30};
-
-    all.tex.p1_l0[i] = create_sprite(all.tex.p1_l0[i], "files/p1_l0.png");
-    sfSprite_setOrigin(all.tex.p1_l0[i], or_t);
-    set_pos(all.tex.p1_l0[i], mouse.x, mouse.y);
-    set_pos(all.tex.p1_l0[0], 2000, 2000);
-    all.pos.tower[all.cn.nb_t] = mouse;
-    all.cn.lvl1[i] = 1;
-    all.cn.nb_t++;
-    all.cn.nb_t1++;
-    all.cn.money -= 250;
-    return (all);
-}
-
-all_t set_tower2(all_t all, sfVector2i mouse)
-{
-    int i = all.cn.nb_t2;
-    sfVector2f or_t = {30, 30};
-
-    all.tex.p2_l0[i] = create_sprite(all.tex.p2_l0[i], "files/p2_l0.png");
-    sfSprite_setOrigin(all.tex.p2_l0[i], or_t);
-    set_pos(all.tex.p2_l0[i], mouse.x, mouse.y);
-    set_pos(all.tex.p2_l0[0], 2000, 2000);
-    all.pos.tower[all.cn.nb_t] = mouse;
-    all.cn.lvl2[i] = 1.25;
-    all.cn.nb_t++;
-    all.cn.nb_t2++;
-    all.cn.money -= 400;
-    return (all);
-}
-
-all_t set_tower3(all_t all, sfVector2i mouse)
-{
-    int i = all.cn.nb_t3;
-    sfVector2f or_t = {30, 30};
-
-    all.tex.p3_l0[i] = create_sprite(all.tex.p3_l0[i], "files/p3_l0.png");
-    sfSprite_setOrigin(all.tex.p3_l0[i], or_t);
-    set_pos(all.tex.p3_l0[i], mouse.x, mouse.y);
-    set_pos(all.tex.p3_l0[0], 2000, 2000);
-    all.pos.tower[all.cn.nb_t] = mouse;
-    all.cn.lvl3[i] = 1.75;
-    all.cn.nb_t++;
-    all.cn.nb_t3++;
-    all.cn.money -= 600;
-    return (all);
-}
-
-all_t set_tower4(all_t all, sfVector2i mouse)
-{
-    int i = all.cn.nb_t4;
-    sfVector2f or_t = {30, 30};
-
-    all.tex.p4_l0[i] = create_sprite(all.tex.p4_l0[i], "files/p4_l0.png");
-    sfSprite_setOrigin(all.tex.p4_l0[i], or_t);
-    set_pos(all.tex.p4_l0[i], mouse.x, mouse.y);
-    set_pos(all.tex.p4_l0[0], 2000, 2000);
-    all.pos.tower[all.cn.nb_t] = mouse;
-    all.cn.lvl4[i] = 2.50;
-    all.cn.nb_t++;
-    all.cn.nb_t4++;
-    all.cn.money -= 1500;
-    return (all);
-}
-
-all_t set_pos_drag(all_t all, sfVector2i mouse, float scale)
-{
-    sfVector2f rescale = {scale, scale};
-
-    sfSprite_setScale(all.tex.c_green, rescale);
-    sfSprite_setScale(all.tex.c_red, rescale);
-    sfClock_restart(all.cl.d);
-    set_pos(all.tex.c_green, mouse.x - 167 * scale, mouse.y - 167 * scale);
-    set_pos(all.tex.c_red, 2000, 2000);
-    if (check_place(all, mouse) != 0) {
-        set_pos(all.tex.c_red, mouse.x - 167 * scale, mouse.y - 167 * scale);
-        set_pos(all.tex.c_green, 2000, 2000);
-    }
-    return (all);
-}
-
-all_t drag1(all_t all, sfVector2i mouse)
-{
-    if (all.cn.tower == 1) {
-        all.cn.click = 0;
-        if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
-         sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
-            set_pos(all.tex.p1_l0[0], mouse.x - 30, mouse.y - 30);
-            all = set_pos_drag(all, mouse, 1);
-        }
-        if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) == 0)
-                all = set_tower1(all, mouse);
-            set_pos(all.tex.p1_l0[0], 2000, 2000);
-            all.cn.tower = 0;
-            set_pos(all.tex.c_green, 2000, 2000);
-            set_pos(all.tex.c_red, 2000, 2000);
-        }
-    } else
-        set_pos(all.tex.p1_l0[0], 2000, 2000);
-    return (all);
-}
-
-all_t drag2(all_t all, sfVector2i mouse)
-{
-    if (all.cn.tower == 2) {
-        all.cn.click = 0;
-        if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
-        sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
-            set_pos(all.tex.p2_l0[0], mouse.x - 30, mouse.y - 30);
-            all = set_pos_drag(all, mouse, 1.25);
-        }
-        if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) == 0)
-                all = set_tower2(all, mouse);
-            set_pos(all.tex.p2_l0[0], 2000, 2000);
-            all.cn.tower = 0;
-            set_pos(all.tex.c_green, 2000, 2000);
-            set_pos(all.tex.c_red, 2000, 2000);
-        }
-    } else
-        set_pos(all.tex.p2_l0[0], 2000, 2000);
-    return (all);
-}
-
-all_t drag3(all_t all, sfVector2i mouse)
-{
-    if (all.cn.tower == 3) {
-        all.cn.click = 0;
-        if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
-        sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
-            set_pos(all.tex.p3_l0[0], mouse.x - 30, mouse.y - 30);
-            all = set_pos_drag(all, mouse, 1.75);
-            }
-        if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) == 0)
-                all = set_tower3(all, mouse);
-            set_pos(all.tex.p3_l0[0], 2000, 2000);
-            all.cn.tower = 0;
-            set_pos(all.tex.c_green, 2000, 2000);
-            set_pos(all.tex.c_red, 2000, 2000);
-        }
-    } else
-        set_pos(all.tex.p3_l0[0], 2000, 2000);
-    return (all);
-}
-
-all_t drag4(all_t all, sfVector2i mouse)
-{
-    if (all.cn.tower == 4) {
-        all.cn.click = 0;
-        if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
-        sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
-            set_pos(all.tex.p4_l0[0], mouse.x - 30, mouse.y - 30);
-            all = set_pos_drag(all, mouse, 2.5);
-            }
-        if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) == 0)
-                all = set_tower4(all, mouse);
-            set_pos(all.tex.p4_l0[0], 2000, 2000);
-            all.cn.tower = 0;
-            set_pos(all.tex.c_green, 2000, 2000);
-            set_pos(all.tex.c_red, 2000, 2000);
-        }
-    } else
-        set_pos(all.tex.p4_l0[0], 2000, 2000);
-    return (all);
-}
-
-all_t set_pos_drag_pic(all_t all, sfVector2i mouse, float scale)
-{
-    sfVector2f rescale = {scale, scale};
-
-    sfSprite_setScale(all.tex.c_green, rescale);
-    sfSprite_setScale(all.tex.c_red, rescale);
-    sfClock_restart(all.cl.d);
-    set_pos(all.tex.c_red, mouse.x - 167 * scale, mouse.y - 167 * scale);
-    set_pos(all.tex.c_green, 2000, 2000);
-    if (check_place(all, mouse) == 1) {
-        set_pos(all.tex.c_green, mouse.x - 167 * scale, mouse.y - 167 * scale);
-        set_pos(all.tex.c_red, 2000, 2000);
-    }
-    return (all);
-}
-
-all_t drag_pic(all_t all, sfVector2i mouse)
-{
-    if (all.cn.tower == 5) {
-        all.cn.click = 0;
-        if (sfMouse_isButtonPressed(sfMouseLeft) == sfTrue &&
-        sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.d)) > 10) {
-            set_pos(all.tex.pic[1], mouse.x - 30, mouse.y - 30);
-            all = set_pos_drag_pic(all, mouse, 0.2);
-            }
-        if (sfMouse_isButtonPressed(sfMouseLeft) != sfTrue) {
-            if (check_place(all, mouse) == 1)
-                all = set_pic(all, mouse);
-            set_pos(all.tex.pic[1], 2000, 2000);
-            all.cn.tower = 0;
-            set_pos(all.tex.c_green, 2000, 2000);
-            set_pos(all.tex.c_red, 2000, 2000);
-        }
-    } else
-        set_pos(all.tex.pic[1], 2000, 2000);
-    return (all);
-}
-
-all_t set_pic(all_t all, sfVector2i mouse)
-{
-    int i = all.cn.nb_pic;
-
-    all.tex.pic[i] = create_sprite(all.tex.pic[i], "files/pic.png");
-    set_pos(all.tex.pic[i], mouse.x - 30, mouse.y - 30);
-    set_pos(all.tex.pic[1], 2000, 2000);
-    all.pos.pic[all.cn.nb_pic] = mouse;
-    all.cn.nb_pic++;
-    all.cn.dura_pic[i] = 0;
-    all.cn.money -= 100;
-    return (all);
 }
 
 all_t click_p(all_t all)

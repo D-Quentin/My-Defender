@@ -7,10 +7,9 @@
 
 #include "my.h"
 
-sfSprite *set_scale(sfSprite *sprite, float x, float y)
+void set_scale(sfSprite *sprite, float x, float y)
 {
     sfVector2f scale = {x, y};
 
     sfSprite_setScale(sprite, scale);
-    return (sprite);
 }
