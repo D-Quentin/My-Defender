@@ -26,6 +26,8 @@ all_t endgame_part(all_t all)
         all.cn.max = 1;
         all.cn.number_waves = 1;
         all.cn.place_bl = 0;
+        all.cn.waiting_time = 80;
+        all.cn.reset_best_score = 0;
         all.str.line = split_line(read_fonction("src/create_waves.txt"), 1, all);
         all = destroy_tower(all);
         set_pos(all.tex.cache, 2000, 2000);
@@ -40,6 +42,8 @@ all_t endgame_part(all_t all)
         all.str.line = split_line(read_fonction("src/create_waves.txt"), 1, all);
         all.cn.max = 1;
         all = destroy_tower(all);
+        all.cn.waiting_time = 80;
+        all.cn.reset_best_score = 0;
         set_pos(all.tex.cache, 2000, 2000);
     }
     if (check_click(all.tex.trophe, 138, 125, all) == 1 && all.cn.life == 0)

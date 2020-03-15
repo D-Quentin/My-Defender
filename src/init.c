@@ -280,6 +280,7 @@ all_t init_counter(all_t all)
     all.cn.waiting_time = 80;
     all.cn.pause = 0;
     all.cn.nb_pic = 2;
+    all.cn.reset_best_score = 0;
     return (all);
 }
 

@@ -153,6 +153,7 @@ struct counter_s {
     int waiting;
     int waiting_time;
     int pause;
+    int reset_best_score;
     sfIntRect sablier;
 };
 
