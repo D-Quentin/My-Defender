@@ -28,9 +28,13 @@ SRC		=	src/my_defender.c		\
 			src/music.c			\
 			src/best_score.c		\
 			src/init2.c			\
-			src/init_pos.c		\
-			src/init_tex.c		\
-			src/init_counter.c	\
+			src/init_pos.c			\
+			src/init_tex.c			\
+			src/init_counter.c		\
+			src/best_score2.c		\
+			src/waves1.c			\
+			src/waves1_1.c			\
+			src/waves2_1.c			\
 
 CPPFLAGS	=	-I ./include
 

@@ -7,10 +7,8 @@
 
 #include "my.h"
 
-all_t gest_life(all_t all, sfSprite *sprite, int i)
+all_t gest_life_seconde(all_t all, sfSprite *sprite, int i)
 {
-    char *life = malloc(sizeof(char) * 4);
-
     if (all.str.line[i] == '1' && all.pos.ballon.x >= 1490) {
         all.cn.life = all.cn.life - 1;
         set_pos(sprite, 20, 20);
@@ -23,6 +21,12 @@ all_t gest_life(all_t all, sfSprite *sprite, int i)
         all.cn.life = all.cn.life - 3;
         set_pos(sprite, 20, 20);
     }
+    return all;
+}
+
+all_t gest_life(all_t all, sfSprite *sprite, int i)
+{
+    all = gest_life_seconde(all, sprite, i);
     if (all.str.line[i] == '4' && all.pos.ballon.x >= 1490) {
         all.cn.life = all.cn.life - 4;
         set_pos(sprite, 20, 20);
@@ -36,10 +40,8 @@ all_t gest_life(all_t all, sfSprite *sprite, int i)
     return (all);
 }
 
-all_t gest_life2(all_t all, sfSprite *sprite, int i)
+all_t gest_life2_seconde(all_t all, sfSprite *sprite, int i)
 {
-    char *life = malloc(sizeof(char) * 4);
-
     if (all.str.line[i] == '1' && all.pos.ballon.y == 36) {
         all.cn.life = all.cn.life - 1;
         set_pos(sprite, 20, 40);
@@ -52,6 +54,12 @@ all_t gest_life2(all_t all, sfSprite *sprite, int i)
         all.cn.life = all.cn.life - 3;
         set_pos(sprite, 20, 40);
     }
+    return all;
+}
+
+all_t gest_life2(all_t all, sfSprite *sprite, int i)
+{
+    all = gest_life2_seconde(all, sprite, i);
     if (all.str.line[i] == '4' && all.pos.ballon.y == 36) {
         all.cn.life = all.cn.life - 4;
         set_pos(sprite, 20, 40);

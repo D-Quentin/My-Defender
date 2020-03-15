@@ -7,14 +7,12 @@
 
 #include "my.h"
 
-all_t find_path_map1(all_t all);
-
 char *read_fonction(char *file)
 {
     int fd = open(file, O_RDONLY);
     int size = 5000;
     char *buffer = malloc(sizeof(char) * size);
-    
+
     read(fd, buffer, size);
     return (buffer);
 }
@@ -47,149 +45,4 @@ all_t max_waves(char *str, all_t all)
     all.cn.max_waves = my_getnbr(waves_round[0]);
     b++;
     return all;
-}
-all_t add_speed(all_t all, int i)
-{
-    if (all.str.line[i] == '1') {
-        all.tex.tab[i] = create_sprite(all.tex.tab[i], "files/b1.png");
-        all.cn.spd[i] = 1;
-    }
-    if (all.str.line[i] == '2') {
-        all.tex.tab[i] = create_sprite(all.tex.tab[i], "files/b2.png");
-        all.cn.spd[i] = 1;
-    }
-    if (all.str.line[i] == '3') {
-        all.tex.tab[i] = create_sprite(all.tex.tab[i], "files/b3.png");
-        all.cn.spd[i] = 1;
-    }
-    if (all.str.line[i] == '4') {
-        all.tex.tab[i] = create_sprite(all.tex.tab[i], "files/b4.png");
-        all.cn.spd[i] = 3;
-    }
-    return all;
-}
-all_t create_sprite_tab(all_t all)
-{
-    if (all.cn.reset_map == 0) {
-        all.cn.spd = malloc(sizeof(int) * 1000);
-        all.cn.line = compt_bal(all.str.line);
-        all.tex.tab = malloc(sizeof(sfSprite *) * 10000);
-    }
-    while (all.cn.reset_map != all.cn.line) {
-        all = add_speed(all, all.cn.reset_map);
-        if (all.str.line[all.cn.reset_map] == '5') {
-            all.tex.tab[all.cn.reset_map] = create_sprite(all.tex.tab[all.cn.reset_map], "files/b5.png");
-            all.cn.spd[all.cn.reset_map] = 2;
-        }
-        set_pos(all.tex.tab[all.cn.reset_map], 350, 870);
-        all.cn.reset_map++;
-    }
-    all = find_path_map1(all);
-    return all;
-}
-
-char *split_line(char *str, int i, all_t all)
-{
-    char *new_line = malloc(sizeof(char) * my_strlen(str) + 1);
-    char **waves_round = str_to_chartab(str);
-
-    new_line = waves_round[i];
-    return new_line;
-}
-
-char **str_to_chartab(char *str)
-{
-    int i = 0, j = 0, k = 0;
-    char **map = malloc(sizeof(char *) * 12000);
-
-    while (str[i] != '\0') {
-        map[j] = malloc(sizeof(char) * 20000);
-        while (str[i] != '\n' && str[i] != '\0') {
-            map[j][k] = str[i];
-            i++;
-            k++;
-        }
-        map[j][k] = '\0';
-        if (str[i - 1] == '\0')
-            return map;
-        k = 0;
-        i++;
-        j++;
-    }
-    return map;
-}
-all_t find_path_map1_second_part(all_t all, int i)
-{
-    while (i != all.cn.max) {
-        all.pos.ballon = sfSprite_getPosition(all.tex.tab[i]);
-        all.cn.road_x = all.pos.ballon.x / 10;
-        all.cn.road_y = (all.pos.ballon.y / 10) - 1;
-        if (all.str.map1[all.cn.road_y - 1][all.cn.road_x] == 'H') {
-            all.pos.up.y = -all.cn.spd[i];
-            sfSprite_move(all.tex.tab[i], all.pos.up);
-        }
-        if (all.str.map1[all.cn.road_y + 1][all.cn.road_x] == 'S') {
-            all.pos.down.y = all.cn.spd[i];
-            sfSprite_move(all.tex.tab[i], all.pos.down);
-        }
-        if (all.str.map1[all.cn.road_y][all.cn.road_x + 1] == 'X') {
-            all.pos.right.x = all.cn.spd[i];
-            sfSprite_move(all.tex.tab[i], all.pos.right);
-        }
-        all = gest_life(all, all.tex.tab[i], i);
-        i++;
-    }
-    return all;
-}
-all_t wait(all_t all)
-{
-    static int mpol = 0;
-
-    if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.sablier)) > all.cn.waiting_time) {
-        mpol++;
-        if (mpol == 5) {
-            mpol = 0;
-            all.cn.waiting = 2;
-            return all;
-        }
-        sfClock_restart(all.cl.sablier);
-    }
-    return all;
-}
-
-all_t find_path_map1(all_t all)
-{
-    int i = 0;
-
-    if (sfTime_asMilliseconds(sfClock_getElapsedTime(all.cl.map)) > 1) {
-        if (all.cn.line != 1 && all.cn.reset_map_v != all.cn.line - 1) {
-            all.pos.ballon = sfSprite_getPosition(all.tex.tab[all.cn.reset_map_v]);
-            all = wait(all);
-            if (all.cn.waiting == 2) {
-                all.cn.waiting = 0;
-                all.cn.max++;
-                all.cn.reset_map_v++;
-            }
-        }
-        all = find_path_map1_second_part(all, i);
-        sfClock_restart(all.cl.map);
-    }
-    if (check_end_round(all) == 1)
-        all = next_wave(all);
-    return (all);
-}
-
-all_t init_waves(all_t all)
-{
-    static int i = 0;
-    char *map;
-
-    if (i == 0) {
-        all = max_waves(read_fonction("src/create_waves.txt"), all);
-        map = read_map("src/map1.txt");
-        all.str.map1 = str_to_chartab(map);
-        i++;
-    }
-    all = create_sprite_tab(all);
-    return (all);
 }
